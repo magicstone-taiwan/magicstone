@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麥金崗石 MAGIC STONE | 官方網站</title>
+    <!-- Google Fonts: Serif for elegant titles, Sans-serif for clean body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 參照室內型錄的溫潤暖極簡色調 */
+            --bg-base: #fbfbf9;
+            --bg-card: #ffffff;
+            --bg-sec: #f5f4ef;
+            --text-main: #2d2d2d;
+            --text-sub: #666666;
+            --brand-gold: #bca07d;
+            --brand-gold-dark: #9d8362;
+            --border-color: rgba(0, 0, 0, 0.06);
+            --accent-charcoal: #3c3c3c;
+            --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px rgba(188, 160, 125, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* 明體字型工具類別 */
+        .serif-font {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        /* 滾動條樣式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dcdbd3;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-gold);
+        }
+
+        /* 導覽列 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(251, 251, 249, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        /* 象徵 M 與 G 的金屬質感幾何 Logo 標誌 */
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-dark) 100%);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 900;
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(188, 160, 125, 0.3);
+        }
+
+        .logo-text {
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-sub {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            margin-top: -0.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--brand-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-gold-dark);
+        }
+
+        .btn-inquiry {
+            background-color: var(--accent-charcoal);
+            color: #ffffff !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 999px;
+            transition: all 0.3s !important;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-inquiry:hover {
+            background-color: var(--brand-gold);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(188, 160, 125, 0.3);
+        }
+
+        .btn-inquiry::after {
+            display: none !important;
+        }
+
+        /* 英雄區橫幅 */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(251, 251, 249, 0.9), rgba(251, 251, 249, 0.8)), 
+                        url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            padding: 8rem 2rem 4rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(188, 160, 125, 0.12) 0%, rgba(251, 251, 249, 0) 60%);
+            pointer-events: none;
+        }
+
+        .hero-tag {
+            font-size: 0.9rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--brand-gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--brand-gold);
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            line-height: 1.25;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-sub);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            font-weight: 300;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+        }
+
+        /* 按鈕樣式 */
+        .btn-primary {
+            padding: 0.9rem 2.2rem;
+            background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-dark) 100%);
+            border: none;
+            border-radius: 999px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(188, 160, 125, 0.3);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(188, 160, 125, 0.45);
+        }
+
+        .btn-secondary {
+            padding: 0.9rem 2.2rem;
+            background: #ffffff;
+            border: 1px solid var(--brand-gold);
+            border-radius: 999px;
+            color: var(--brand-gold-dark);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-sec);
+            transform: translateY(-2px);
+        }
+
+        /* 區塊全域設定 */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--brand-gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--text-main);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* 產品分頁展示區 */
+        .products-section {
+            background-color: var(--bg-sec);
+            padding: 6rem 2rem;
+        }
+
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-trigger {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 2rem;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-sub);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-trigger:hover {
+            color: var(--brand-gold-dark);
+            border-color: var(--brand-gold);
+        }
+
+        .tab-trigger.active {
+            background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-dark) 100%);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-content {
+            display: none;
+            background: var(--bg-card);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .product-content.active {
+            display: flex;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-image {
+            width: 45%;
+            position: relative;
+            min-height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            width: 55%;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (max-width: 900px) {
+            .product-content.active {
+                flex-direction: column;
+            }
+            .product-image {
+                width: 100%;
+                height: 300px;
+                min-height: 300px;
+            }
+            .product-info {
+                width: 100%;
+                padding: 2.5rem;
+            }
+        }
+
+        .prod-tag {
+            color: var(--brand-gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .prod-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .prod-desc {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .prod-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .prod-feat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .feat-icon-bullet {
+            width: 8px;
+            height: 8px;
+            background-color: var(--brand-gold);
+            border-radius: 50%;
+        }
+
+        /* 互動式變色模擬器 */
+        .color-explorer {
+            background-color: var(--bg-base);
+        }
+
+        .visualizer-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .visualizer-body {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .visualizer-body {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .visualizer-card {
+                padding: 1.5rem;
+            }
+        }
+
+        .interactive-stage {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            height: 480px;
+            isolation: isolate; /* 建立獨立圖層層級，防止混色影響外部元素 */
+        }
+
+        .stage-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Blend multiply 混合模式能將純色覆蓋層與白牆的陰影及細緻紋理完美結合 */
+        .stage-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            mix-blend-mode: multiply;
+            opacity: 0.88;
+            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .stage-light-shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.08) 0%, rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.08) 100%);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        .palette-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .palette-nav {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1.8rem;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .pal-tab {
+            background: transparent;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-sub);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pal-tab.active {
+            color: var(--brand-gold-dark);
+            font-weight: 700;
+        }
+
+        .pal-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1.1rem;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--brand-gold);
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .color-swatch-btn {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .color-swatch-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--brand-gold);
+            box-shadow: var(--shadow-md);
+        }
+
+        .color-swatch-btn.selected {
+            border-color: var(--text-main);
+            box-shadow: 0 0 0 1px var(--text-main), var(--shadow-md);
+        }
+
+        .swatch-color-bar {
+            width: 100%;
+            height: 38px;
+            border-radius: 4px;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 5px;
+        }
+
+        .swatch-color-label {
+            font-size: 0.65rem;
+            font-family: monospace;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.05em;
+        }
+
+        .active-color-card {
+            background: var(--bg-sec);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .active-color-title {
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 0.2rem;
+        }
+
+        .active-color-meta {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            font-family: monospace;
+        }
+
+        .active-swatch-color-dot {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* 圓形特點標籤區（參照型錄第 2、3 頁圓圈） */
+        .circle-tags-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .circle-tag {
+            width: 100px;
+            height: 100px;
+            background-color: var(--accent-charcoal);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .circle-tag:hover {
+            transform: scale(1.08);
+            background-color: var(--brand-gold);
+            box-shadow: 0 12px 25px rgba(188, 160, 125, 0.35);
+        }
+
+        /* 對比表格區塊 */
+        .comparison-section {
+            background-color: var(--bg-sec);
+        }
+
+        .comparison-table-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: rgba(188, 160, 125, 0.08);
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .win-tag {
+            background-color: rgba(188, 160, 125, 0.15);
+            color: var(--brand-gold-dark);
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        /* 施工指南 */
+        .construction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--brand-gold);
+        }
+
+        .step-num {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--brand-gold);
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+        }
+
+        .step-desc {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+
+        /* 麥金崗石品牌介紹（去除了母公司騰煇標記，專注品牌獨立行銷） */
+        .company-intro {
+            background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), 
+                        url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .company-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .company-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        .company-subtitle {
+            font-size: 1.1rem;
+            color: var(--brand-gold-dark);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .company-body {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            border-left: 3px solid var(--brand-gold);
+            padding-left: 1.2rem;
+        }
+
+        .stat-val {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--text-main);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        /* 塗料用量計算器與詢價表單 */
+        .inquiry-section {
+            background-color: var(--bg-sec);
+        }
+
+        .calculator-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3.5rem;
+            box-shadow: var(--shadow-md);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .calculator-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .form-input {
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #dcdbd3;
+            border-radius: 10px;
+            background: var(--bg-base);
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: var(--brand-gold);
+            background: #ffffff;
+            box-shadow: 0 0 8px rgba(188, 160, 125, 0.15);
+        }
+
+        .calc-result-box {
+            background-color: rgba(188, 160, 125, 0.06);
+            border: 1px dashed var(--brand-gold);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .calc-val {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--brand-gold-dark);
+            margin: 0.5rem 0;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #1e1e1e;
+            color: #b0b0b0;
+            padding: 5rem 2rem 2rem 2rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        .footer-logo-area {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-logo-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .footer-col h5 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-col ul a {
+            text-decoration: none;
+            color: #b0b0b0;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0 auto;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777777;
+        }
+        .footer-logo-img {
+            height: 48px;
+            width: auto;
+            display: block;
+            /* grayscaled silver-metallic effect that preserves internal MG line details and segments */
+            filter: grayscale(1) brightness(1.7) contrast(1.4);
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+        .footer-logo-img:hover {
+            opacity: 1;
+            filter: none; /* Restore original rich gold and dark grey logo on hover */
+        }
+    </style>
+    <!-- Browser Favicon -->
+    <link rel="icon" type="image/png" href="麥金logo_無字_方-01.png">
+</head>
+<body>
+
+    <!-- 頂部導覽列 -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo-area" style="display: flex; align-items: center; padding: 5px 0;">
+                <img src="麥金logo_7.png" alt="麥金崗石 Magic Stone" style="height: 42px; width: auto; display: block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">關於麥金崗石</a></li>
+                <li><a href="#products">產品系列</a></li>
+                <li><a href="#visualizer">色彩模擬</a></li>
+                <li><a href="#construction">施工作業</a></li>
+                <li><a href="#inquiry" class="btn-inquiry">需求估算</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 視覺主視覺大圖區 -->
+    <section class="hero">
+        <div>
+            <span class="hero-tag">Safety & Aesthetics</span>
+            <h2 class="serif-font">自然美學．大氣石紋</h2>
+            <p>堅持台灣在地研發生產，融合最懂海島氣候的工程工藝，為建築室內外注入頂級天然原石般的呼吸感與健康防護。</p>
+            <div class="hero-actions">
+                <a href="#visualizer" class="btn-primary">色彩靈感展示</a>
+                <a href="#products" class="btn-secondary">瀏覽產品規格</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特性標章區（對應型錄頁 2、3 的黑色小圓圈） -->
+    <section style="padding: 4rem 2rem 0 2rem; max-width: 1200px; margin: 0 auto;">
+        <div class="circle-tags-container">
+            <div class="circle-tag"><span>耐高溫</span><span style="font-size:0.7rem; font-weight:300;">High Temp</span></div>
+            <div class="circle-tag"><span>耐髒汙</span><span style="font-size:0.7rem; font-weight:300;">Stain Resist</span></div>
+            <div class="circle-tag"><span>易清潔</span><span style="font-size:0.7rem; font-weight:300;">Easy Clean</span></div>
+            <div class="circle-tag"><span>低 VOC</span><span style="font-size:0.7rem; font-weight:300;">Low VOC</span></div>
+            <div class="circle-tag"><span>彈性佳</span><span style="font-size:0.7rem; font-weight:300;">Elasticity</span></div>
+            <div class="circle-tag"><span>無接縫</span><span style="font-size:0.7rem; font-weight:300;">Seamless</span></div>
+        </div>
+    </section>
+
+    <!-- 關於麥金崗石崗石 -->
+    <section class="section company-intro" id="about">
+        <div class="company-container">
+            <div>
+                <span class="company-subtitle">麥金崗石 — 台灣第一本土礦物塗料品牌</span>
+                <h3 class="company-title serif-font">頂級大自然原石質感<br>賦予牆面呼吸感與健康空間</h3>
+                <p class="company-body">
+                    作為台灣本土礦物塗料品牌，麥金崗石（Magic Stone）專注於研發最適合海島潮濕環境、最具自然美學表現的純水性塗料。我們堅持 100% 在地研發生產，徹底解決傳統外牆塗料易開裂、掉粉及起泡的氣候痛點。
+                </p>
+                <p class="company-body" style="margin-bottom: 0;">
+                    不論是追求大氣粗獷的仿崗石外牆，或是強調極低 VOC、低甲醛綠建材標準的室內礦物塗層，麥金皆能完美呈現天然岩石般的細膩肌理與層次，為經典建築及現代室內設計提升整體氣韻，守護您的健康與質感。
+                </p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div style="margin-bottom: 2rem; text-align: center;">
+                    <img src="麥金logo_有字_方-01.png" alt="麥金崗石 Magic Stone" style="width: 140px; height: auto; opacity: 0.95;">
+                </div>
+                <div class="stats-grid" style="width: 100%;">
+                    <div class="stat-item">
+                        <div class="stat-val">30+</div>
+                        <div class="stat-label">年專屬工藝工法研發</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-val">100%</div>
+                        <div class="stat-label">台灣在地研發生產</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-val">36+</div>
+                        <div class="stat-label">大自然大地精緻配色</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-val">0</div>
+                        <div class="stat-label">重金屬有害化學添加</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 產品系列展示 -->
+    <section class="products-section" id="products">
+        <div class="tabs-container">
+            <div class="section-header">
+                <span class="section-tag">Collections</span>
+                <h3 class="section-title serif-font">三款核心美學塗料產品</h3>
+            </div>
+            
+            <div class="product-tabs">
+                <button class="tab-trigger active" onclick="switchProductTab('granite', this)">麥金崗石塗料</button>
+                <button class="tab-trigger" onclick="switchProductTab('texture', this)">麥金紋理塗料</button>
+                <button class="tab-trigger" onclick="switchProductTab('mineral', this)">麥金礦物塗料 (室內/外)</button>
+            </div>
+
+            <!-- 崗石塗料 -->
+            <div class="product-content active" id="prod-granite">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="product-info">
+                    <span class="prod-tag">金錠系列 / 純水性複層</span>
+                    <h4 class="prod-title serif-font">麥金崗石漆</h4>
+                    <p class="prod-desc">
+                        採用特殊功能性樹脂與色包技術的多彩粗點塗料，從室內到室外牆面設計，都能 100% 完整呈現頂級花崗石的粗獷與天然質感。
+                    </p>
+                    <div class="prod-features">
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>抗汙環保彈性</div>
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>不龜裂防細紋</div>
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>修補無交接痕</div>
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>100%噴塗附著</div>
+                    </div>
+                    <a href="#inquiry" class="btn-primary" style="align-self: flex-start;">索取估價與樣板</a>
+                </div>
+            </div>
+
+            <!-- 紋理塗料 -->
+            <div class="product-content" id="prod-texture">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="product-info">
+                    <span class="prod-tag">無機面漆保護 / 仿燒面質感</span>
+                    <h4 class="prod-title serif-font">麥金紋理塗料</h4>
+                    <p class="prod-desc">
+                        專為新建與老屋整修外牆設計，優異的抗紫外線老化性能。獨特工序配備無機面漆保護層，可防粉化與長保色彩美觀。
+                    </p>
+                    <div class="prod-features">
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>日式與歐美極簡風格</div>
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>防粉化無機面漆</div>
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>五道嚴謹施工作業</div>
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>仿石材面燒面質感</div>
+                    </div>
+                    <a href="#inquiry" class="btn-primary" style="align-self: flex-start;">索取工程報價</a>
+                </div>
+            </div>
+
+            <!-- 礦物塗料 -->
+            <div class="product-content" id="prod-mineral">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="product-info">
+                    <span class="prod-tag">極低 VOC / 水性環保美學</span>
+                    <h4 class="prod-title serif-font">麥金礦物美學系列</h4>
+                    <p class="prod-desc">
+                        針對室內與室外分別調配的高端單彩呼吸感塗料。無接縫、低甲醛，能呈現天然礦物極度細緻、高雅、微紋理層次的自然表面。
+                    </p>
+                    <div class="prod-features">
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>室內極低甲醛( &lt;0.12 mg/L )</div>
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>室外高防曬耐酸雨</div>
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>36 種大自然大地色彩</div>
+                        <div class="prod-feat-item"><div class="feat-icon-bullet"></div>高溫耐火且防髒汙</div>
+                    </div>
+                    <a href="#visualizer" class="btn-primary" style="align-self: flex-start;">開始色彩模擬</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 大地礦物色彩模擬器（已修正按鈕渲染與混合疊加層級） -->
+    <section class="section color-explorer" id="visualizer">
+        <div class="section-header">
+            <span class="section-tag">Color Palette</span>
+            <h3 class="section-title serif-font">大自然大地礦物色彩</h3>
+            <p style="color: var(--text-sub); margin-top: 1rem; font-weight: 300;">
+                點選下方各大系列色籤，預覽精緻牆面與現代空間的交互光影呈現。
+            </p>
+        </div>
+
+        <div class="visualizer-card">
+            <div class="visualizer-body">
+                <div class="interactive-stage">
+                    <!-- 採用各色系專屬侘寂室內空間，確保暗色/紅色系在正確的基色渲染下呈現最自然真實的漫反射與陰影 -->
+                    <img src="swatch_scenes/scene_rose.jpg" alt="空間變色示意圖" class="stage-image" id="stage-main-image">
+                    <div class="stage-overlay" id="stage-overlay" style="background-color: #d8c3b3;"></div>
+                    <div class="stage-light-shadow"></div>
+                </div>
+
+                <div class="palette-panel">
+                    <div>
+                        <div class="palette-nav">
+                            <button class="pal-tab active" onclick="changePaletteTab('rose', this)">沙漠玫瑰系列</button>
+                            <button class="pal-tab" onclick="changePaletteTab('gray', this)">晨曦岩灰系列</button>
+                            <button class="pal-tab" onclick="changePaletteTab('field', this)">煙雨曠野系列</button>
+                            <button class="pal-tab" onclick="changePaletteTab('lilac', this)">板岩丁香系列</button>
+                        </div>
+
+                        <div class="color-grid" id="color-swatch-container">
+                            <!-- 由 JS 動態注入色票按鈕 -->
+                        </div>
+                    </div>
+
+                    <div class="active-color-card">
+                        <div>
+                            <div class="active-color-title" id="active-title">沙漠玫瑰 01</div>
+                            <div class="active-color-meta" id="active-meta">MGS-001 | RGB #D8C3B3</div>
+                        </div>
+                        <div class="active-swatch-color-dot" id="active-color-dot" style="background-color: #d8c3b3;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 塗料全系列性能對比表 -->
+    <section class="section comparison-section">
+        <div class="section-header">
+            <span class="section-tag">Comparison</span>
+            <h3 class="section-title serif-font">為什麼選擇麥金系列塗料？</h3>
+        </div>
+        
+        <div class="comparison-table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>性能指標</th>
+                        <th>傳統石頭漆 / 多彩漆</th>
+                        <th>麥金崗石漆</th>
+                        <th>麥金紋理塗料</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>外觀質感</strong></td>
+                        <td>石頭漆粗糙易落砂；多彩漆偏塑料平面感，無自然石感</td>
+                        <td><strong>仿多彩立體花崗石紋</strong><br>（多彩粗點立體石紋） <span class="win-tag">特點</span></td>
+                        <td><strong>仿天然石材燒面紋理</strong><br>（細緻層次無機保護） <span class="win-tag">特點</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>施工損耗</strong></td>
+                        <td>噴塗材料落料飛散，約有 25% 損耗浪費</td>
+                        <td colspan="2" style="text-align: center; background-color: rgba(188, 160, 125, 0.05);">
+                            <strong>100% 噴塗附著，無材料飛散浪費</strong> <span class="win-tag">全系列優點</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>交接接縫痕</strong></td>
+                        <td>施工鷹架交接處極易產生明顯接縫痕跡</td>
+                        <td colspan="2" style="text-align: center; background-color: rgba(188, 160, 125, 0.05);">
+                            <strong>完美無接縫施工，長效平滑無交接痕</strong> <span class="win-tag">全系列優點</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>破損修補</strong></td>
+                        <td>局部修補色差極大，修補痕跡斑駁明顯</td>
+                        <td colspan="2" style="text-align: center; background-color: rgba(188, 160, 125, 0.05);">
+                            <strong>卓越的現場修補性能，修補後無接縫痕跡</strong> <span class="win-tag">全系列優點</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>耐候與防裂</strong></td>
+                        <td>石頭漆吸水易龜裂起砂；多彩漆耐候差易粉化</td>
+                        <td colspan="2" style="text-align: center; background-color: rgba(188, 160, 125, 0.05);">
+                            <strong>高壓水槍沖洗，微彈性不易龜裂、粉化與褪色</strong> <span class="win-tag">全系列優點</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 施工標準工法步驟 -->
+    <section class="section" id="construction">
+        <div class="section-header">
+            <span class="section-tag">Application</span>
+            <h3 class="section-title serif-font">標準施作與工法細節</h3>
+        </div>
+        
+        <div class="construction-grid">
+            <div class="step-card">
+                <div class="step-num">01.</div>
+                <div class="step-title">基面整理</div>
+                <div class="step-desc">
+                    外牆面或內牆須平整、無開裂剥落。含水率低於 8%，pH 值在 8 以下。裂縫滲漏需提前施作補漏。
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-num">02.</div>
+                <div class="step-title">底漆與封孔</div>
+                <div class="step-desc">
+                    滾塗或噴塗專屬滲透型封孔底漆，確保封閉底層毛細孔，增強中塗與面層塗料的物理抓取力。
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-num">03.</div>
+                <div class="step-title">攪拌與噴刷</div>
+                <div class="step-desc">
+                    **本系列塗料開罐即用，嚴禁加水稀釋**。底漆與面漆之間（或雙道面漆間）須間隔至少 8 - 12 小時。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 需求用量估算器與諮詢 -->
+    <section class="section inquiry-section" id="inquiry">
+        <div class="section-header">
+            <span class="section-tag">Contact & Estimate</span>
+            <h3 class="section-title serif-font">用量估算與工程諮詢</h3>
+            <p style="color: var(--text-sub); margin-top: 1rem; font-weight: 300;">
+                輸入您的需求坪數，系統將快速為您評估大概所需的麥金礦物塗料重量。
+            </p>
+        </div>
+
+        <div class="calculator-card">
+            <form id="inquiryForm" onsubmit="event.preventDefault(); calculateCoating();">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="prod-select">預計使用產品</label>
+                        <select class="form-input" id="prod-select" onchange="calculateCoating()">
+                            <option value="indoor">麥金室內礦物美學系列 (375g/㎡)</option>
+                            <option value="outdoor">麥金室外礦物美學系列 (425g/㎡)</option>
+                            <option value="granite">麥金多彩崗石系列 (約 1.2kg/㎡)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="area-input">施工面積 (坪)</label>
+                        <input class="form-input" type="number" id="area-input" placeholder="請輸入坪數" value="30" oninput="calculateCoating()">
+                    </div>
+                </div>
+
+                <div class="calc-result-box">
+                    <div style="font-size: 0.95rem; color: var(--text-sub);">預估所需塗料總重</div>
+                    <div class="calc-val" id="calc-result">37.1 公斤 (kg)</div>
+                    <div style="font-size: 0.8rem; color: var(--text-sub);">*本估算以標準二道施作工序計，實際損耗需依現施工牆面粗糙度調整。</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="name-input">聯絡姓名</label>
+                        <input class="form-input" type="text" id="name-input" placeholder="例：林先生/陳小姐">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="phone-input">聯絡電話</label>
+                        <input class="form-input" type="text" id="phone-input" placeholder="例：0912-345678">
+                    </div>
+                </div>
+
+                <button class="btn-primary" style="width: 100%; border: none; padding: 1rem; border-radius: 12px; font-weight: 700; margin-top: 1rem;" type="submit">送出諮詢申請</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 頁尾聯絡資訊 -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-logo-area">
+                <div style="margin-bottom: 1.5rem;">
+                    <img src="麥金logo_7.png" alt="麥金崗石 Magic Stone" class="footer-logo-img">
+                </div>
+                <p>高端建築與美學空間塗料品牌。守護您建築與居家空間的健康與質感肌理。</p>
+            </div>
+            <div class="footer-col">
+                <h5>產品系列</h5>
+                <ul>
+                    <li><a href="#products">麥金崗石漆 (金錠系列)</a></li>
+                    <li><a href="#products">麥金紋理塗料 (仿燒面)</a></li>
+                    <li><a href="#products">室內美學礦物塗料</a></li>
+                    <li><a href="#products">室外耐候礦物塗料</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>聯絡我們</h5>
+                <ul>
+                    <li>電話：04-2680-2755</li>
+                    <li>服務區域：台中地區 / 台灣中部</li>
+                    <li>信箱：magic862726@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 麥金崗石 MAGIC STONE 版權所有。台灣本土優質塗料代表。</p>
+        </div>
+    </footer>
+
+    <!-- 負責色票生成與用量估算之 JavaScript 邏輯 -->
+    <script>
+        const colorPaletteData = {
+            rose: [
+                { name: "沙漠玫瑰 MGS-001", code: "MGS-001", color: "#F4E5E2" },
+                { name: "沙漠玫瑰 MGS-002", code: "MGS-002", color: "#C47F78" },
+                { name: "沙漠玫瑰 MGS-003", code: "MGS-003", color: "#986562" },
+                { name: "沙漠玫瑰 MGS-004", code: "MGS-004", color: "#7E373D" },
+                { name: "沙漠玫瑰 MGS-005", code: "MGS-005", color: "#FDECDC" },
+                { name: "沙漠玫瑰 MGS-006", code: "MGS-006", color: "#E0AA90" },
+                { name: "沙漠玫瑰 MGS-007", code: "MGS-007", color: "#AA8670" },
+                { name: "沙漠玫瑰 MGS-008", code: "MGS-008", color: "#946154" }
+            ],
+            gray: [
+                { name: "晨曦岩灰 MGS-009", code: "MGS-009", color: "#F4E9CD" },
+                { name: "晨曦岩灰 MGS-010", code: "MGS-010", color: "#F4D7A4" },
+                { name: "晨曦岩灰 MGS-011", code: "MGS-011", color: "#DDBE85" },
+                { name: "晨曦岩灰 MGS-012", code: "MGS-012", color: "#B29756" },
+                { name: "晨曦岩灰 MGS-013", code: "MGS-013", color: "#F6F1EB" },
+                { name: "晨曦岩灰 MGS-014", code: "MGS-014", color: "#E0D2C5" },
+                { name: "晨曦岩灰 MGS-015", code: "MGS-015", color: "#B8B09B" },
+                { name: "晨曦岩灰 MGS-016", code: "MGS-016", color: "#958D78" }
+            ],
+            field: [
+                { name: "煙雨曠野 MGS-017", code: "MGS-017", color: "#E0E0DE" },
+                { name: "煙雨曠野 MGS-018", code: "MGS-018", color: "#E0E1D3" },
+                { name: "煙雨曠野 MGS-019", code: "MGS-019", color: "#AEB5A5" },
+                { name: "煙雨曠野 MGS-020", code: "MGS-020", color: "#8E8E8C" },
+                { name: "煙雨曠野 MGS-021", code: "MGS-021", color: "#858A84" },
+                { name: "煙雨曠野 MGS-022", code: "MGS-022", color: "#D8DED0" },
+                { name: "煙雨曠野 MGS-023", code: "MGS-023", color: "#BCC7B6" },
+                { name: "煙雨曠野 MGS-024", code: "MGS-024", color: "#99A68A" },
+                { name: "煙雨曠野 MGS-025", code: "MGS-025", color: "#78846C" },
+                { name: "煙雨曠野 MGS-026", code: "MGS-026", color: "#6D6D6B" }
+            ],
+            lilac: [
+                { name: "板岩丁香 MGS-027", code: "MGS-027", color: "#D2DBDE" },
+                { name: "板岩丁香 MGS-028", code: "MGS-028", color: "#BDCAD2" },
+                { name: "板岩丁香 MGS-029", code: "MGS-029", color: "#90A2B0" },
+                { name: "板岩丁香 MGS-030", code: "MGS-030", color: "#798591" },
+                { name: "板岩丁香 MGS-031", code: "MGS-031", color: "#6B6370" },
+                { name: "板岩丁香 MGS-032", code: "MGS-032", color: "#E8E7E5" },
+                { name: "板岩丁香 MGS-033", code: "MGS-033", color: "#E9E7E8" },
+                { name: "板岩丁香 MGS-034", code: "MGS-034", color: "#CCCBC8" },
+                { name: "板岩丁香 MGS-035", code: "MGS-035", color: "#C8C1C9" },
+                { name: "板岩丁香 MGS-036", code: "MGS-036", color: "#9E979F" }
+            ]
+        };
+
+        let currentPalTab = 'rose';
+
+        function renderColors(tabKey) {
+            const container = document.getElementById('color-swatch-container');
+            container.innerHTML = '';
+            
+            const colors = colorPaletteData[tabKey];
+            colors.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'color-swatch-btn';
+                btn.setAttribute('title', item.name);
+                
+                // Create colored rectangle bar
+                const colorBar = document.createElement('div');
+                colorBar.className = 'swatch-color-bar';
+                colorBar.style.backgroundColor = item.color;
+                btn.appendChild(colorBar);
+                
+                // Create readable text label at the bottom (MGS-XXX)
+                const label = document.createElement('span');
+                label.className = 'swatch-color-label';
+                label.innerText = item.code;
+                btn.appendChild(label);
+                
+                if (index === 0) {
+                    btn.classList.add('selected');
+                    setActiveColor(item);
+                }
+                btn.onclick = () => {
+                    document.querySelectorAll('.color-swatch-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    setActiveColor(item);
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        // 已生成的獨立實景圖映射表
+        const mgsCustomScenes = {
+            "MGS-003": "swatch_scenes/mgs_003.jpg",
+            "MGS-005": "swatch_scenes/mgs_005.jpg",
+            "MGS-006": "swatch_scenes/mgs_006.jpg",
+            "MGS-007": "swatch_scenes/mgs_007.jpg",
+            "MGS-008": "swatch_scenes/mgs_008.jpg",
+            "MGS-009": "swatch_scenes/mgs_009.jpg",
+            "MGS-010": "swatch_scenes/mgs_010.jpg",
+            "MGS-011": "swatch_scenes/mgs_011.jpg",
+            "MGS-012": "swatch_scenes/mgs_012.jpg",
+            "MGS-013": "swatch_scenes/mgs_013.jpg",
+            "MGS-014": "swatch_scenes/mgs_014.jpg",
+            "MGS-015": "swatch_scenes/mgs_015.jpg",
+            "MGS-016": "swatch_scenes/mgs_016.jpg"
+        };
+
+        function setActiveColor(colorObj) {
+            const overlay = document.getElementById('stage-overlay');
+            const mainImg = document.getElementById('stage-main-image');
+            
+            if (mgsCustomScenes[colorObj.code]) {
+                // 如果有獨立生成的實景圖，直接載入原圖，完全關閉 CSS 濾鏡以呈現 100% 自然真實的光影與配色
+                if (mainImg) {
+                    mainImg.src = mgsCustomScenes[colorObj.code];
+                }
+                if (overlay) {
+                    overlay.style.backgroundColor = 'transparent';
+                    overlay.style.mixBlendMode = 'normal';
+                }
+            } else {
+                // 尚未生成的顏色則載入該色系的專屬基底圖，並套用極輕微的色偏，避免對比失真
+                if (mainImg) {
+                    mainImg.src = tabScenes[currentPalTab];
+                }
+                if (overlay) {
+                    overlay.style.backgroundColor = colorObj.color;
+                    overlay.style.mixBlendMode = 'multiply';
+                }
+            }
+            
+            document.getElementById('active-title').innerText = colorObj.name;
+            document.getElementById('active-meta').innerText = colorObj.code + " | " + colorObj.color.toUpperCase();
+            document.getElementById('active-color-dot').style.backgroundColor = colorObj.color;
+        }
+
+        const tabScenes = {
+            rose: "swatch_scenes/scene_rose.jpg",
+            gray: "swatch_scenes/scene_gray.jpg",
+            field: "swatch_scenes/scene_field.jpg",
+            lilac: "swatch_scenes/scene_lilac.jpg"
+        };
+
+        function changePaletteTab(tabKey, btnEl) {
+            currentPalTab = tabKey;
+            document.querySelectorAll('.pal-tab').forEach(t => t.classList.remove('active'));
+            btnEl.classList.add('active');
+            
+            // Dynamically change the background room scene to fit the color group
+            const mainImg = document.getElementById('stage-main-image');
+            if (mainImg) {
+                mainImg.src = tabScenes[tabKey];
+            }
+            
+            renderColors(tabKey);
+        }
+
+        // 產品展示 Tab 切換邏輯
+        function switchProductTab(productId, btnEl) {
+            document.querySelectorAll('.tab-trigger').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.product-content').forEach(c => c.classList.remove('active'));
+            
+            btnEl.classList.add('active');
+            document.getElementById('prod-' + productId).classList.add('active');
+        }
+
+        // 用量面積換算與估算邏輯
+        // 1 坪 = 3.3058 平方公尺
+        function calculateCoating() {
+            const areaPing = parseFloat(document.getElementById('area-input').value) || 0;
+            const productType = document.getElementById('prod-select').value;
+            
+            const areaM2 = areaPing * 3.3058;
+            let dosageGPerM2 = 375; // 標準室內
+            
+            if (productType === 'outdoor') {
+                dosageGPerM2 = 425; // 標準室外
+            } else if (productType === 'granite') {
+                dosageGPerM2 = 1200; // 崗石系列
+            }
+            
+            const totalKg = (areaM2 * dosageGPerM2) / 1000;
+            document.getElementById('calc-result').innerText = totalKg.toFixed(1) + " 公斤 (kg)";
+        }
+
+        // 初始化渲染
+        renderColors('rose');
+        calculateCoating();
+    </script>
+</body>
+</html>
