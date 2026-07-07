@@ -670,7 +670,8 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            overflow: hidden;
+            overflow-x: auto; /* Enable horizontal scroll on mobile */
+            -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
             box-shadow: var(--shadow-md);
         }
 
@@ -974,6 +975,63 @@
             opacity: 1;
             filter: none; /* Restore original rich gold and dark grey logo on hover */
         }
+
+        /* Mobile Responsive Upgrades */
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                background: rgba(251, 251, 249, 0.96) !important;
+            }
+            .nav-container {
+                padding: 0.8rem 1rem !important;
+                flex-direction: column !important;
+                gap: 0.6rem !important;
+            }
+            .nav-links {
+                gap: 0.8rem !important;
+                justify-content: center !important;
+                width: 100% !important;
+                flex-wrap: wrap !important;
+            }
+            .nav-links a {
+                font-size: 0.8rem !important;
+                padding: 0.2rem 0.4rem !important;
+            }
+            .hero {
+                padding-top: 175px !important; /* Solve sticky header overlap issue on mobile */
+                padding-bottom: 3.5rem !important;
+                min-height: auto !important;
+            }
+            .hero h2 {
+                font-size: 2.0rem !important; /* Prevent text clipping and awkward word-breaks */
+                line-height: 1.35 !important;
+            }
+            .hero p {
+                font-size: 1.0rem !important;
+                margin-bottom: 2rem !important;
+            }
+            .company-title {
+                font-size: 1.7rem !important; /* Solve company title line-break issue */
+                line-height: 1.45 !important;
+                word-break: keep-all !important;
+            }
+            .section-title {
+                font-size: 1.8rem !important;
+            }
+            table {
+                min-width: 750px !important; /* Enable swipe to read columns without squishing */
+            }
+            .circle-tags-container {
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 0.8rem !important;
+            }
+            .circle-tag {
+                width: 72px !important;
+                height: 72px !important;
+                font-size: 0.85rem !important;
+            }
+        }
     </style>
     <!-- Browser Favicon -->
     <link rel="icon" type="image/png" href="麥金logo_無字_方-01.png">
@@ -1025,7 +1083,7 @@
     <section class="section company-intro" id="about">
         <div class="company-container">
             <div>
-                <span class="company-subtitle">麥金崗石 — 台灣第一本土礦物塗料品牌</span>
+                <span class="company-subtitle">麥金崗石 — 台灣優質在地精工礦物塗料</span>
                 <h3 class="company-title serif-font">頂級大自然原石質感<br>賦予牆面呼吸感與健康空間</h3>
                 <p class="company-body">
                     作為台灣本土礦物塗料品牌，麥金崗石（Magic Stone）專注於研發最適合海島潮濕環境、最具自然美學表現的純水性塗料。我們堅持 100% 在地研發生產，徹底解決傳統外牆塗料易開裂、掉粉及起泡的氣候痛點。
@@ -1040,8 +1098,8 @@
                 </div>
                 <div class="stats-grid" style="width: 100%;">
                     <div class="stat-item">
-                        <div class="stat-val">30+</div>
-                        <div class="stat-label">年專屬工藝工法研發</div>
+                        <div class="stat-val">精工</div>
+                        <div class="stat-label">在地核心技術研發</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-val">100%</div>
