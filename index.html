@@ -932,7 +932,7 @@
         }
 
         .footer-col h5 {
-            color: white;
+            color: var(--brand-gold);
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
             font-weight: 700;
@@ -966,14 +966,7 @@
             height: 48px;
             width: auto;
             display: block;
-            /* grayscaled silver-metallic effect that preserves internal MG line details and segments */
-            filter: grayscale(1) brightness(1.7) contrast(1.4);
-            opacity: 0.85;
-            transition: all 0.3s ease;
-        }
-        .footer-logo-img:hover {
             opacity: 1;
-            filter: none; /* Restore original rich gold and dark grey logo on hover */
         }
 
         /* Mobile Responsive Upgrades */
@@ -1016,7 +1009,21 @@
                 word-break: keep-all !important;
             }
             .section-title {
-                font-size: 1.8rem !important;
+                font-size: 1.55rem !important; /* Shrink section titles on mobile to prevent ugly line breaks */
+            }
+            .hero-actions {
+                flex-direction: column !important;
+                gap: 0.8rem !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+            .hero-actions a {
+                width: 100% !important;
+                max-width: 280px !important;
+                padding: 0.8rem 1rem !important;
+                font-size: 0.95rem !important;
+                text-align: center !important;
+                box-sizing: border-box !important;
             }
             table {
                 min-width: 750px !important; /* Enable swipe to read columns without squishing */
