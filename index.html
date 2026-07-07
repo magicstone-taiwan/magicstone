@@ -515,11 +515,12 @@
 
         .palette-nav {
             display: flex;
-            gap: 0.4rem;
+            column-gap: 0.4rem;
+            row-gap: 1.2rem; /* Add vertical spacing when tabs wrap on mobile */
             margin-bottom: 1.8rem;
             flex-wrap: wrap;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1rem;
+            padding-bottom: 0.6rem; /* Bring the border closer to prevent absolute layout bleeding */
         }
 
         .pal-tab {
@@ -542,7 +543,7 @@
         .pal-tab.active::after {
             content: '';
             position: absolute;
-            bottom: -1.1rem;
+            bottom: -0.7rem; /* Brought the underline up so it matches the new border padding and doesn't touch bottom rows */
             left: 0;
             width: 100%;
             height: 2px;
