@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "canva-official": {
-      "serverUrl": "https://mcp.canva.com/mcp",
-      "url": "https://mcp.canva.com/mcp"
+      "url": "https://mcp.canva.com/mcp",
+      "serverUrl": "https://mcp.canva.com/mcp"
     }
   }
 }
