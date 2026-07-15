@@ -1056,6 +1056,25 @@
         }
         .lb-dot.active { background: var(--brand-gold); }
 
+
+        /* Load More button */
+        .btn-more {
+            background: none;
+            border: 2px solid var(--brand-gold);
+            color: var(--brand-gold-dark);
+            padding: 0.75rem 2.5rem;
+            border-radius: 99px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            letter-spacing: 0.5px;
+        }
+        .btn-more:hover {
+            background: var(--brand-gold);
+            color: #fff;
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .cases-grid { columns: 2; }
@@ -1669,38 +1688,48 @@
     <!-- ═══════════════════════════════════════════════════════
          工程實績展示 (Cases Gallery)
     ═══════════════════════════════════════════════════════ -->
-    <section class="section" id="projects" style="padding-top:0; background: var(--bg-base);">
-
-        <!-- Hero Carousel -->
-        <div class="cases-hero" id="cases-hero-wrap">
-            <!-- slides injected by JS -->
-            <button class="cases-hero-nav prev" onclick="heroNav(-1)" aria-label="上一張">&#8592;</button>
-            <button class="cases-hero-nav next" onclick="heroNav(1)" aria-label="下一張">&#8594;</button>
-            <div class="cases-hero-dots" id="hero-dots"></div>
-        </div>
+    <section id="projects" style="background: var(--bg-base);">
 
         <!-- Section Header -->
-        <div class="section-header" style="margin-top:3.5rem;">
-            <span class="section-tag">Projects</span>
-            <h3 class="section-title serif-font">工程實績展示</h3>
-            <p style="color:var(--text-sub);margin-top:0.8rem;max-width:520px;margin-left:auto;margin-right:auto;font-size:0.95rem;">從全台各地的建案、廟宇到星級酒店，麥金崗石漆工法經受嚴苛環境考驗。</p>
+        <div class="section" style="padding-bottom:0;">
+            <div class="section-header">
+                <span class="section-tag">Projects</span>
+                <h2 class="section-title serif-font">工程實績展示</h2>
+                <p style="color:var(--text-sub);margin-top:0.8rem;max-width:540px;margin-left:auto;margin-right:auto;font-size:0.95rem;">從全台各地的建案、廟宇到星級酒店，麥金漆工法歷經台灣嚴苛濕熱環境考驗。</p>
+            </div>
         </div>
 
-        <!-- Tab Filter -->
-        <div class="cases-tabs" role="tablist">
-            <button id="tab-all" class="cases-tab-btn active" onclick="filterCases('all')" role="tab" aria-selected="true">
-                全部 <span class="cases-tab-count" id="cnt-all">0</span>
-            </button>
-            <button id="tab-mg" class="cases-tab-btn" onclick="filterCases('mg')" role="tab" aria-selected="false">
-                崗石 MG <span class="cases-tab-count" id="cnt-mg">0</span>
-            </button>
-            <button id="tab-mgs" class="cases-tab-btn" onclick="filterCases('mgs')" role="tab" aria-selected="false">
-                礦物 MGS <span class="cases-tab-count" id="cnt-mgs">0</span>
-            </button>
+        <!-- 崗石 MG 系列 -->
+        <div class="section" id="projects-mg">
+            <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid var(--brand-gold);">
+                <div style="width:4px;height:2.4rem;background:var(--brand-gold);border-radius:2px;flex-shrink:0;"></div>
+                <div>
+                    <div style="font-size:0.75rem;letter-spacing:3px;color:var(--brand-gold);font-weight:700;text-transform:uppercase;">MG Series</div>
+                    <h3 class="serif-font" style="font-size:1.5rem;font-weight:900;margin:0;color:var(--text-main);">崗石 MG 系列 &mdash; 多彩花崗石紋</h3>
+                </div>
+                <span id="cnt-mg" style="margin-left:auto;font-size:0.8rem;background:rgba(188,160,125,0.15);color:var(--brand-gold-dark);padding:0.3rem 0.8rem;border-radius:99px;font-weight:700;white-space:nowrap;">0 件</span>
+            </div>
+            <div class="cases-grid" id="grid-mg"></div>
+            <div style="text-align:center;margin-top:2rem;">
+                <button id="more-mg" class="btn-more" onclick="loadMore('mg')" style="display:none;">載入更多崗石案例 ↓</button>
+            </div>
         </div>
 
-        <!-- Masonry Grid (JS-rendered) -->
-        <div class="cases-grid" id="cases-grid"></div>
+        <!-- 礦物 MGS 系列 -->
+        <div class="section" id="projects-mgs" style="padding-top:0;">
+            <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid #7eb8a4;">
+                <div style="width:4px;height:2.4rem;background:#7eb8a4;border-radius:2px;flex-shrink:0;"></div>
+                <div>
+                    <div style="font-size:0.75rem;letter-spacing:3px;color:#4a9a84;font-weight:700;text-transform:uppercase;">MGS Series</div>
+                    <h3 class="serif-font" style="font-size:1.5rem;font-weight:900;margin:0;color:var(--text-main);">礦物 MGS 系列 &mdash; 無機耐候質感</h3>
+                </div>
+                <span id="cnt-mgs" style="margin-left:auto;font-size:0.8rem;background:rgba(126,184,164,0.15);color:#3a8a74;padding:0.3rem 0.8rem;border-radius:99px;font-weight:700;white-space:nowrap;">0 件</span>
+            </div>
+            <div class="cases-grid" id="grid-mgs"></div>
+            <div style="text-align:center;margin-top:2rem;">
+                <button id="more-mgs" class="btn-more" onclick="loadMore('mgs')" style="display:none;">載入更多礦物案例 ↓</button>
+            </div>
+        </div>
 
     </section>
 
@@ -2070,118 +2099,104 @@
     <!-- Cases Gallery Data & Logic -->
     <script src="case_images/case_data.js"></script>
     <script>
-    // ── Hero Carousel ──────────────────────────────────────────────────────────
-    const HERO_CASES = [
-        { type:'mg',  idx:0,  tag:'崗石 MG · 台中站前',  title:'秀泰影城',         sub:'台中站前商圈指標地標，MG-005 經典灰' },
-        { type:'mg',  idx:23, tag:'崗石 MG · 新竹香山',  title:'港南艾茉爾婚宴會館', sub:'花崗岩紋理 + GRC 工法，典雅奢華外牆' },
-        { type:'mgs', idx:13, tag:'礦物 MGS · 苗栗竹南', title:'兆品酒店',           sub:'GRC 特殊工法，星級酒店外牆質感呈現' },
-        { type:'mg',  idx:22, tag:'崗石 MG · 新竹關西',  title:'關西法雲寺',         sub:'廟宇建築工程，防候耐污高彈性工法' },
-        { type:'mgs', idx:4,  tag:'礦物 MGS · 台南北門', title:'南鯤鯓代天府鯤瀛樓', sub:'台灣知名廟宇地標，礦物塗料抗鹼工程' },
-    ];
-    let heroIdx = 0, heroTimer;
-    function buildHero() {
-        const wrap = document.getElementById('cases-hero-wrap');
-        const dotsEl = document.getElementById('hero-dots');
-        HERO_CASES.forEach((h, i) => {
-            const data = h.type === 'mg' ? CASE_DATA.granite[h.idx] : CASE_DATA.mineral[h.idx];
-            if (!data) return;
-            const slide = document.createElement('div');
-            slide.className = 'cases-hero-slide' + (i === 0 ? ' active' : '');
-            slide.innerHTML = `
-                <img src="${data.imgs[0]}" alt="${data.name}" loading="lazy">
-                <div class="cases-hero-overlay">
-                    <div class="cases-hero-tag">${h.tag}</div>
-                    <div class="cases-hero-title">${h.title}</div>
-                    <div class="cases-hero-sub">${h.sub}</div>
-                </div>`;
-            wrap.insertBefore(slide, wrap.querySelector('.cases-hero-nav'));
-            const dot = document.createElement('button');
-            dot.setAttribute('aria-label', '切換至第' + (i+1) + '張');
-            dot.className = i === 0 ? 'active' : '';
-            dot.onclick = () => goHero(i);
-            dotsEl.appendChild(dot);
-        });
-        startHeroTimer();
-    }
-    function goHero(n) {
-        const slides = document.querySelectorAll('.cases-hero-slide');
-        const dots = document.querySelectorAll('.cases-hero-dots button');
-        slides[heroIdx].classList.remove('active');
-        dots[heroIdx].classList.remove('active');
-        heroIdx = (n + slides.length) % slides.length;
-        slides[heroIdx].classList.add('active');
-        dots[heroIdx].classList.add('active');
-    }
-    function heroNav(dir) { clearInterval(heroTimer); goHero(heroIdx + dir); startHeroTimer(); }
-    function startHeroTimer() {
-        heroTimer = setInterval(() => goHero(heroIdx + 1), 4200);
+    // ── Cases Gallery ────────────────────────────────────────────────────────────
+    const PAGE_SIZE = 12;
+    const paged = { mg: 0, mgs: 0 };
+    const allCards = { mg: [], mgs: [] };
+    let lbCard = null, lbImgIdx = 0, lbPool = [];
+
+    function buildSeriesGrid(series, data, gridId, cntId, moreBtnId) {
+        const grid = document.getElementById(gridId);
+        const cntEl = document.getElementById(cntId);
+        const moreBtn = document.getElementById(moreBtnId);
+        if (!grid) return;
+
+        cntEl.textContent = data.length + ' 件';
+        allCards[series] = data.map((d, ci) => ({ data: d, series, ci, imgIdx: 0 }));
+        paged[series] = 0;
+        renderMore(series, gridId, moreBtnId);
     }
 
-    // ── Cases Grid ─────────────────────────────────────────────────────────────
-    let allCards = []; // {data, type, cardEl, imgIdx}
-    let lbCards = [], lbCard = null, lbImgIdx = 0;
+    function renderMore(series, gridId, moreBtnId) {
+        const grid = document.getElementById(gridId);
+        const moreBtn = document.getElementById(moreBtnId);
+        const pool = allCards[series];
+        const from = paged[series] * PAGE_SIZE;
+        const to = Math.min(from + PAGE_SIZE, pool.length);
 
-    function buildGrid() {
-        const grid = document.getElementById('cases-grid');
-        grid.innerHTML = '';
-        allCards = [];
-        const combined = [
-            ...CASE_DATA.granite.map(d => ({data:d, type:'mg'})),
-            ...CASE_DATA.mineral.map(d => ({data:d, type:'mgs'})),
-        ];
-        document.getElementById('cnt-all').textContent = combined.length;
-        document.getElementById('cnt-mg').textContent = CASE_DATA.granite.length;
-        document.getElementById('cnt-mgs').textContent = CASE_DATA.mineral.length;
+        for (let i = from; i < to; i++) {
+            grid.appendChild(makeCard(pool[i]));
+        }
+        paged[series]++;
 
-        combined.forEach((item, ci) => {
-            const { data, type } = item;
-            const multi = data.imgs.length > 1;
-            const card = document.createElement('div');
-            card.className = 'case-card';
-            card.dataset.type = type;
+        const remaining = pool.length - paged[series] * PAGE_SIZE;
+        if (remaining > 0) {
+            moreBtn.style.display = '';
+            moreBtn.textContent = (series === 'mg' ? '載入更多崗石案例' : '載入更多礦物案例') + ' ↓ (' + remaining + ' 件)';
+        } else {
+            moreBtn.style.display = 'none';
+        }
+    }
 
-            // Image carousel inside card
-            let imgsHtml = data.imgs.map((src, ii) =>
-                `<img src="${src}" alt="${data.name}" loading="lazy" class="${ii===0?'active':''}" data-ci="${ci}" data-ii="${ii}">`
-            ).join('');
-            let dotsHtml = multi
-                ? '<div class="card-dots">' + data.imgs.map((_,ii) =>
-                    `<div class="card-dot${ii===0?' active':''}"></div>`).join('') + '</div>'
-                : '';
-            let arrowsHtml = multi
-                ? `<button class="card-arrow prev" onclick="cardNav(event,${ci},-1)" aria-label="上一張">&#8592;</button>
-                   <button class="card-arrow next" onclick="cardNav(event,${ci},1)" aria-label="下一張">&#8594;</button>`
-                : '';
-            const seriesLabel = type === 'mg' ? '崗石 MG' : '礦物 MGS';
+    function loadMore(series) {
+        const gridId = 'grid-' + series;
+        const moreBtnId = 'more-' + series;
+        renderMore(series, gridId, moreBtnId);
+    }
 
-            card.innerHTML = `
-                <div class="case-card-imgs">
-                    ${imgsHtml}
-                    ${dotsHtml}
-                    ${arrowsHtml}
+    function makeCard(obj) {
+        const { data, series, ci } = obj;
+        const multi = data.imgs.length > 1;
+        const card = document.createElement('div');
+        card.className = 'case-card';
+
+        const imgsHtml = data.imgs.map((src, ii) =>
+            `<img src="${src}" alt="${data.name}" loading="lazy" class="${ii===0?'active':''}">`
+        ).join('');
+        const dotsHtml = multi
+            ? '<div class="card-dots">' + data.imgs.map((_,ii) =>
+                `<div class="card-dot${ii===0?' active':''}"></div>`).join('') + '</div>'
+            : '';
+        const arrowsHtml = multi
+            ? `<button class="card-arrow prev" onclick="cardNav(event,this,-1)" aria-label="上一張">&#8592;</button>
+               <button class="card-arrow next" onclick="cardNav(event,this,1)" aria-label="下一張">&#8594;</button>`
+            : '';
+        const accentColor = series === 'mg' ? 'var(--brand-gold)' : '#4a9a84';
+        const seriesLabel = series === 'mg' ? '崗石 MG' : '礦物 MGS';
+
+        card.innerHTML = `
+            <div class="case-card-imgs">
+                ${imgsHtml}${dotsHtml}${arrowsHtml}
+            </div>
+            <div class="case-card-info">
+                <div class="case-card-name">${data.name}</div>
+                <div class="case-card-meta">
+                    ${data.location}${data.builder ? ' · ' + data.builder : ''}
+                    &nbsp;|&nbsp;
+                    <span style="color:${accentColor};font-weight:700;">${seriesLabel}</span>
                 </div>
-                <div class="case-card-info">
-                    <div class="case-card-name">${data.name}</div>
-                    <div class="case-card-meta">${data.location}${data.builder ? ' · ' + data.builder : ''} &nbsp;|&nbsp; <span style="color:var(--brand-gold);font-weight:700;">${seriesLabel}</span></div>
-                </div>`;
+            </div>`;
 
-            // Click opens lightbox on the current image
-            card.querySelector('.case-card-imgs').addEventListener('click', (e) => {
-                if (e.target.classList.contains('card-arrow')) return;
-                const obj = allCards.find(c => c.cardEl === card);
-                openLightbox(obj);
-            });
-
-            grid.appendChild(card);
-            allCards.push({ data, type, cardEl: card, imgIdx: 0 });
+        card.querySelector('.case-card-imgs').addEventListener('click', e => {
+            if (e.target.classList.contains('card-arrow')) return;
+            lbCard = obj;
+            lbImgIdx = obj.imgIdx;
+            lbPool = allCards[series].filter(c => c.ci <= paged[series] * PAGE_SIZE);
+            openLightbox();
         });
+        obj.cardEl = card;
+        return card;
     }
 
-    function cardNav(e, ci, dir) {
+    function cardNav(e, btn, dir) {
         e.stopPropagation();
-        const obj = allCards[ci];
-        const imgs = obj.cardEl.querySelectorAll('.case-card-imgs img');
-        const dots = obj.cardEl.querySelectorAll('.card-dot');
+        const wrapper = btn.closest('.case-card-imgs');
+        const imgs = wrapper.querySelectorAll('img');
+        const dots = wrapper.querySelectorAll('.card-dot');
+        // Find which card object this is
+        const card = wrapper.closest('.case-card');
+        const obj = [...allCards.mg, ...allCards.mgs].find(o => o.cardEl === card);
+        if (!obj) return;
         imgs[obj.imgIdx].classList.remove('active');
         if (dots[obj.imgIdx]) dots[obj.imgIdx].classList.remove('active');
         obj.imgIdx = (obj.imgIdx + dir + imgs.length) % imgs.length;
@@ -2189,25 +2204,8 @@
         if (dots[obj.imgIdx]) dots[obj.imgIdx].classList.add('active');
     }
 
-    // ── Tab Filter ─────────────────────────────────────────────────────────────
-    let currentFilter = 'all';
-    function filterCases(type) {
-        currentFilter = type;
-        ['all','mg','mgs'].forEach(t => {
-            document.getElementById('tab-' + t).classList.toggle('active', t === type);
-            document.getElementById('tab-' + t).setAttribute('aria-selected', t === type);
-        });
-        allCards.forEach(({ data: _d, type: t, cardEl }) => {
-            const show = type === 'all' || t === type;
-            cardEl.style.display = show ? '' : 'none';
-        });
-    }
-
     // ── Lightbox ───────────────────────────────────────────────────────────────
-    function openLightbox(obj) {
-        lbCard = obj;
-        lbImgIdx = obj.imgIdx;
-        lbCards = allCards.filter(c => currentFilter === 'all' || c.type === currentFilter);
+    function openLightbox() {
         updateLb();
         document.getElementById('cases-lightbox').classList.add('open');
         document.body.style.overflow = 'hidden';
@@ -2218,9 +2216,9 @@
         document.getElementById('lb-img').src = imgs[lbImgIdx];
         document.getElementById('lb-title').textContent = lbCard.data.name;
         document.getElementById('lb-meta').textContent =
-            lbCard.data.location + (lbCard.data.builder ? ' · ' + lbCard.data.builder : '') +
-            ' | ' + (lbCard.type === 'mg' ? '崗石 MG 系列' : '礦物 MGS 系列');
-        // Dots
+            lbCard.data.location +
+            (lbCard.data.builder ? ' · ' + lbCard.data.builder : '') +
+            ' | ' + (lbCard.series === 'mg' ? '崗石 MG 系列' : '礦物 MGS 系列');
         const dotsEl = document.getElementById('lb-dots');
         dotsEl.innerHTML = imgs.map((_, ii) =>
             `<div class="lb-dot${ii===lbImgIdx?' active':''}" onclick="lbImgGo(${ii})"></div>`
@@ -2228,18 +2226,12 @@
     }
     function lbImgGo(ii) { lbImgIdx = ii; updateLb(); }
     function lbNav(dir) {
-        // Within same project: cycle images; then move to next project
         const imgs = lbCard.data.imgs;
-        const newImgIdx = lbImgIdx + dir;
-        if (newImgIdx >= 0 && newImgIdx < imgs.length) {
-            lbImgIdx = newImgIdx;
-            updateLb();
-            return;
-        }
-        // Move to next/prev project
-        const ci = lbCards.findIndex(c => c === lbCard);
-        const nextCi = (ci + dir + lbCards.length) % lbCards.length;
-        lbCard = lbCards[nextCi];
+        const newI = lbImgIdx + dir;
+        if (newI >= 0 && newI < imgs.length) { lbImgIdx = newI; updateLb(); return; }
+        const ci = lbPool.findIndex(c => c === lbCard);
+        const nextCi = (ci + dir + lbPool.length) % lbPool.length;
+        lbCard = lbPool[nextCi];
         lbImgIdx = dir > 0 ? 0 : lbCard.data.imgs.length - 1;
         updateLb();
     }
@@ -2259,11 +2251,12 @@
 
     // ── Init ───────────────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
-        buildHero();
-        buildGrid();
+        if (typeof CASE_DATA === 'undefined') {
+            console.warn('CASE_DATA not loaded');
+            return;
+        }
+        buildSeriesGrid('mg',  CASE_DATA.granite, 'grid-mg',  'cnt-mg',  'more-mg');
+        buildSeriesGrid('mgs', CASE_DATA.mineral, 'grid-mgs', 'cnt-mgs', 'more-mgs');
     });
     </script>
 
-</body>
-
-</html>

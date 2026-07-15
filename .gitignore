@@ -1,0 +1,6 @@
+# Exclude high resolution source assets
+官網案例/
+麥金短影音/
+magicstone_video/node_modules/
+magicstone_video/out/
+.gemini/
