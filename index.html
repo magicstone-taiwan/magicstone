@@ -120,7 +120,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.25rem; /* Reduced from 2rem to prevent wrapping/overlap on medium screens */
             list-style: none;
             align-items: center;
         }
@@ -1105,7 +1105,7 @@
             align-items: center;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .company-container {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
@@ -1254,7 +1254,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
@@ -1320,7 +1320,7 @@
         }
 
         /* Mobile Responsive Upgrades */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             nav {
                 position: fixed;
                 background: rgba(251, 251, 249, 0.96) !important;
