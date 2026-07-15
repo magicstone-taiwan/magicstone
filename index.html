@@ -495,7 +495,7 @@
         /* 關於區金色 Logo 懸浮飄逸動態 */
         @keyframes gentle-float {
             0% { transform: translateY(0); }
-            50% { transform: translateY(-7px); }
+            50% { transform: translateY(-14px); } /* Increased float amplitude for visible premium motion */
             100% { transform: translateY(0); }
         }
         .about-logo-hover {
@@ -1536,7 +1536,7 @@
             </div>
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <div style="margin-bottom: 3.5rem; text-align: center;">
-                    <img src="麥金logo_有字_方-01.png" alt="麥金崗石 Magic Stone" class="about-logo-hover" style="width: 110px; height: auto; opacity: 0.92; transition: filter 0.3s;">
+                    <img src="麥金logo_有字_方-01.png" alt="麥金崗石 Magic Stone" class="about-logo-hover" style="width: 165px; height: auto; opacity: 0.92; transition: filter 0.3s;">
                 </div>
                 <div class="stats-grid" style="width: 100%;">
                     <div class="stat-item">
@@ -1650,10 +1650,7 @@
                     <img src="swatch_scenes/scene_rose.jpg" alt="空間變色示意圖" class="stage-image" id="stage-main-image">
                     <div class="stage-overlay" id="stage-overlay" style="background-color: #d8c3b3;"></div>
                     <div class="stage-light-shadow"></div>
-                    <!-- Spinner loading overlay for slow mobile connections -->
-                    <div class="stage-loader" id="stage-loader" style="display:none; position:absolute; inset:0; background:rgba(0,0,0,0.2); z-index:5; align-items:center; justify-content:center;">
-                        <div style="width:40px; height:40px; border:3px solid rgba(188,160,125,0.3); border-top-color:var(--brand-gold); border-radius:50%; animation:stage-spin 0.8s linear infinite;"></div>
-                    </div>
+                    
                 </div>
 
                 <div class="palette-panel">
@@ -2093,30 +2090,21 @@
         function setActiveColor(colorObj) {
             const overlay = document.getElementById('stage-overlay');
             const mainImg = document.getElementById('stage-main-image');
-            const loader = document.getElementById('stage-loader');
             
             if (mgsCustomScenes[colorObj.code]) {
                 if (mainImg) {
-                    // Velvet cross-fade: dim the current image out softly
-                    mainImg.style.opacity = '0.15';
-                    if (loader) {
-                        loader.style.display = 'flex';
-                    }
+                    // Soft cross-fade transition without dark spinner overlay
+                    mainImg.style.opacity = '0.45';
                     
                     const tempImg = new Image();
                     tempImg.src = mgsCustomScenes[colorObj.code];
                     tempImg.onload = () => {
-                        // Keep faded-out state slightly to let the eye perceive the transition
-                        setTimeout(() => {
-                            mainImg.src = mgsCustomScenes[colorObj.code];
-                            mainImg.style.opacity = '1'; // Velvet fade-in
-                            if (loader) loader.style.display = 'none';
-                        }, 120);
+                        mainImg.src = mgsCustomScenes[colorObj.code];
+                        mainImg.style.opacity = '1';
                     };
                     tempImg.onerror = () => {
                         mainImg.src = mgsCustomScenes[colorObj.code];
                         mainImg.style.opacity = '1';
-                        if (loader) loader.style.display = 'none';
                     };
                 }
                 if (overlay) {
@@ -2125,14 +2113,12 @@
                 }
             } else {
                 if (mainImg) {
-                    mainImg.style.opacity = '0.15';
+                    mainImg.style.opacity = '0.45';
                     const tempImg = new Image();
                     tempImg.src = tabScenes[currentPalTab];
                     tempImg.onload = () => {
-                        setTimeout(() => {
-                            mainImg.src = tabScenes[currentPalTab];
-                            mainImg.style.opacity = '1';
-                        }, 120);
+                        mainImg.src = tabScenes[currentPalTab];
+                        mainImg.style.opacity = '1';
                     };
                     tempImg.onerror = () => {
                         mainImg.src = tabScenes[currentPalTab];
