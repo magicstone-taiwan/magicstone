@@ -1571,10 +1571,10 @@
                 <div class="palette-panel">
                     <div>
                         <div class="palette-nav">
-                            <button class="pal-tab active" onclick="changePaletteTab('rose', this)">沙漠玫瑰系列</button>
-                            <button class="pal-tab" onclick="changePaletteTab('gray', this)">晨曦岩灰系列</button>
-                            <button class="pal-tab" onclick="changePaletteTab('field', this)">煙雨曠野系列</button>
-                            <button class="pal-tab" onclick="changePaletteTab('lilac', this)">板岩丁香系列</button>
+                            <button class="pal-tab active" onclick="changePaletteTab('rose', this)" onmouseover="preloadCategoryImages('rose')">沙漠玫瑰系列</button>
+                            <button class="pal-tab" onclick="changePaletteTab('gray', this)" onmouseover="preloadCategoryImages('gray')">晨曦岩灰系列</button>
+                            <button class="pal-tab" onclick="changePaletteTab('field', this)" onmouseover="preloadCategoryImages('field')">煙雨曠野系列</button>
+                            <button class="pal-tab" onclick="changePaletteTab('lilac', this)" onmouseover="preloadCategoryImages('lilac')">板岩丁香系列</button>
                         </div>
 
                         <div class="color-grid" id="color-swatch-container">
@@ -1983,7 +1983,7 @@
                     // 1. First preload current active category (rose)
                     preloadCategoryImages('rose');
                     
-                    // 2. Then preload all remaining categories sequentially
+                    // 2. Then preload all remaining categories sequentially (optimized with shorter delay)
                     const remainingCategories = ['gray', 'field', 'lilac'];
                     let catIdx = 0;
                     
@@ -1991,9 +1991,9 @@
                         if (catIdx >= remainingCategories.length) return;
                         preloadCategoryImages(remainingCategories[catIdx]);
                         catIdx++;
-                        setTimeout(preloadNextCategory, 600); // Small interval
+                        setTimeout(preloadNextCategory, 150); // Reduced delay to 150ms for instant caching
                     }
-                    setTimeout(preloadNextCategory, 800);
+                    setTimeout(preloadNextCategory, 300);
                 }, 1500);
             });
         }
