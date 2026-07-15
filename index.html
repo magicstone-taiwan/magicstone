@@ -170,6 +170,35 @@
             box-shadow: 0 6px 15px rgba(188, 160, 125, 0.3);
         }
 
+        /* Language Toggle Button Style */
+        .lang-switch-btn {
+            background: rgba(188, 160, 125, 0.12);
+            border: 1px solid rgba(188, 160, 125, 0.3);
+            color: var(--brand-gold-dark);
+            padding: 0.4rem 0.9rem;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            margin-right: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lang-switch-btn:hover {
+            background: var(--brand-gold);
+            color: #fff;
+            border-color: var(--brand-gold);
+        }
+        @media (max-width: 992px) {
+            .lang-switch-btn {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+                padding: 0.3rem 0.8rem;
+            }
+        }
+
         .btn-inquiry::after {
             display: none !important;
         }
@@ -1415,6 +1444,7 @@
                 <li><a href="#visualizer">色彩模擬</a></li>
                 <li><a href="#construction">施工作業</a></li>
                 <li><a href="#projects">工程實績</a></li>
+                <li><button id="lang-btn" class="lang-switch-btn" onclick="toggleLanguage()" aria-label="Switch Language">EN</button></li>
                 <li><a href="#inquiry" class="btn-inquiry">需求估算</a></li>
             </ul>
         </div>
@@ -2012,6 +2042,196 @@
         
         // Execute background preloader init
         initBackgroundPreloader();
+
+        // ── One-Click Translation / Language Switcher ──
+        let currentLang = 'zh';
+        
+        const TRANSLATIONS = {
+            en: {
+                // Navigation
+                "nav a[href='#about']": "About",
+                "nav a[href='#products']": "Products",
+                "nav a[href='#visualizer']": "Colors",
+                "nav a[href='#construction']": "Application",
+                "nav a[href='#projects']": "Cases",
+                "nav .btn-inquiry": "Inquiry",
+                
+                // Hero Area
+                ".hero-subtitle": "Premium Taiwan-Made Coatings",
+                ".hero h2": "empowering walls with breathability & natural stone textures",
+                ".hero p": "Reject traditional tiles. Magic Stone provides lightweight, seamless, highly flexible granite & mineral paint for ultimate safety and longevity.",
+                ".hero-badge:nth-child(1) span": "36+ Nature Colors",
+                ".hero-badge:nth-child(2) span": "100% Local R&D",
+                ".hero-badge:nth-child(3) span": "Non-Toxic Formula",
+                ".hero-actions .btn-primary": "Start Simulator",
+                ".hero-actions .btn-secondary": "Browse Cases",
+                
+                // About Section
+                ".company-subtitle": "Magic Stone — Premium Taiwan Mineral Coatings",
+                ".company-title": "Nature Stone Textures<br>Empowering Walls with Breathability",
+                ".company-body:nth-of-type(1)": "As a premium Taiwanese brand, Magic Stone specializes in water-based mineral coatings tailored for humid sub-tropical climates. We solve traditional exterior issues such as cracking, peeling, and bubbling.",
+                ".company-body:nth-of-type(2)": "Through natural inorganic formulas and advanced flex-shield technology, we deliver the premium look of real granite without the dangerous weight of tiles or stone panels.",
+                ".stat-card:nth-child(1) .stat-num": "Premium",
+                ".stat-card:nth-child(1) .stat-label": "Local R&D Technology",
+                ".stat-card:nth-child(2) .stat-num": "100%",
+                ".stat-card:nth-child(2) .stat-label": "Taiwan Manufacturing",
+                ".stat-card:nth-child(3) .stat-num": "36+",
+                ".stat-card:nth-child(3) .stat-label": "Nature Palette Tones",
+                ".stat-card:nth-child(4) .stat-num": "0%",
+                ".stat-card:nth-child(4) .stat-label": "Heavy Metal Additives",
+                
+                // Products Section
+                "#products .section-tag": "Product Series",
+                "#products .section-title": "Three Pillars of Stone Aesthetics",
+                "#products .tab-trigger[onclick*='indoor']": "Indoor Mineral",
+                "#products .tab-trigger[onclick*='outdoor']": "Outdoor Mineral",
+                "#products .tab-trigger[onclick*='granite']": "Granite Series",
+                "#prod-indoor .product-desc": "Chic Wabi-Sabi interior mineral textures. Zero VOC, zero odor, creating a healthy indoor breeze.",
+                "#prod-outdoor .product-desc": "Superior weather protection for building envelopes. Self-cleaning, mildew-proof, breathable shield.",
+                "#prod-granite .product-desc": "3D multi-tone textured granite finishes. Lightweight, highly safe stone simulation for skyscrapers.",
+                ".feature-list li:nth-child(1)": "✓ Breathable & water-repellent formula",
+                ".feature-list li:nth-child(2)": "✓ Anti-mildew & anti-algae certificate",
+                ".feature-list li:nth-child(3)": "✓ Flexible shield resists micro-cracks",
+                ".feature-list li:nth-child(4)": "✓ Eco-friendly, green building standard",
+                "#products .btn-primary": "Simulate Colors Now",
+                
+                // Circle Tags
+                ".circle-tag:nth-child(1) span:first-child": "Heat Resist",
+                ".circle-tag:nth-child(2) span:first-child": "Stain Resist",
+                ".circle-tag:nth-child(3) span:first-child": "Easy Clean",
+                ".circle-tag:nth-child(4) span:first-child": "Low VOC",
+                ".circle-tag:nth-child(5) span:first-child": "Elasticity",
+                ".circle-tag:nth-child(6) span:first-child": "Seamless",
+                
+                // Colors Section
+                "#visualizer .section-tag": "Color Palette",
+                "#visualizer .section-title": "Nature Earth Mineral Colors",
+                "#visualizer p": "Click swatches below to preview realistic room shadows and matte stone light interactions.",
+                ".palette-nav button:nth-child(1)": "Desert Rose",
+                ".palette-nav button:nth-child(2)": "Morning Gray",
+                ".palette-nav button:nth-child(3)": "Misty Field",
+                ".palette-nav button:nth-child(4)": "Slate Lilac",
+                
+                // Comparison Section
+                ".comparison-section .section-tag": "Comparison",
+                ".comparison-section .section-title": "Why Choose Magic Stone?",
+                "table th:nth-child(1)": "Performance",
+                "table th:nth-child(2)": "Traditional Stone Paint",
+                "table th:nth-child(3)": "Magic Stone Granite",
+                "table th:nth-child(4)": "Magic Stone Texture Paint",
+                "table tr:nth-child(1) td:nth-child(1)": "Texture",
+                "table tr:nth-child(1) td:nth-child(2)": "Rough & sandy; flat plastic feeling.",
+                "table tr:nth-child(1) td:nth-child(3)": "3D Granite replication.",
+                "table tr:nth-child(1) td:nth-child(4)": "Fine burned natural stone texture.",
+                "table tr:nth-child(2) td:nth-child(1)": "Weathering",
+                "table tr:nth-child(2) td:nth-child(2)": "Yellows & peels in 2-3 years.",
+                "table tr:nth-child(2) td:nth-child(3)": "15+ years weather & UV shield.",
+                "table tr:nth-child(2) td:nth-child(4)": "Superb anti-acid & color fastness.",
+                "table tr:nth-child(3) td:nth-child(1)": "Safety",
+                "table tr:nth-child(3) td:nth-child(2)": "Thick coating increases weight.",
+                "table tr:nth-child(3) td:nth-child(3)": "Lightweight, zero fall hazard.",
+                "table tr:nth-child(3) td:nth-child(4)": "Micro-flexible, prevents cracks.",
+                
+                // Application Guide
+                "#construction .section-tag": "Application Guide",
+                "#construction .section-title": "Professional Exterior System",
+                ".step-card:nth-child(1) .step-title": "1. Base Repair",
+                ".step-card:nth-child(1) .step-desc": "Inspect substrate, repair cracks, and apply waterproof sealer.",
+                ".step-card:nth-child(2) .step-title": "2. Joint Design",
+                ".step-card:nth-child(2) .step-desc": "Draw layout grids and install anti-crack expansion joints.",
+                ".step-card:nth-child(3) .step-title": "3. Spray Application",
+                ".step-card:nth-child(3) .step-desc": "Double-layer spray for solid 3D granite color dots.",
+                ".step-card:nth-child(4) .step-title": "4. Glaze Seal",
+                ".step-card:nth-child(4) .step-desc": "Apply nano-silicon protective glaze for self-cleaning shield.",
+                
+                // Cases Section
+                "#projects .section-tag": "Projects",
+                "#projects h2.section-title": "Featured Case Studies",
+                "#projects p": "Proven durability on residential estates and local landmarks under humid coastal climates.",
+                "#projects-mg h3": "Granite MG Series &mdash; Flower Pattern",
+                "#projects-mgs h3": "Mineral MGS Series &mdash; Matte Weatherproof",
+                "#more-mg": "Load More Granite Cases ↓",
+                "#more-mgs": "Load More Mineral Cases ↓",
+                
+                // Inquiry Section
+                "#inquiry .section-tag": "Contact & Estimate",
+                "#inquiry .section-title": "Dosage Estimate & Consultation",
+                "#inquiry p": "Enter your coverage area to quickly estimate required coating weight.",
+                ".calculator-card label[for='area-input']": "Coverage Area (Ping):",
+                ".calculator-card label[for='prod-select']": "Coating Type:",
+                ".calculator-card option[value='indoor']": "Indoor Wabi-Sabi Series",
+                ".calculator-card option[value='outdoor']": "Outdoor Sealer Series",
+                ".calculator-card option[value='granite']": "Skyscraper Granite Series",
+                ".calculator-card .btn-primary": "Calculate Now",
+                ".calculator-card h5": "Estimated Required Weight:",
+                ".info-title": "Exterior Coating - Engineering Policy",
+                ".info-text": "Please note: Outdoor mineral paint & granite paint are provided as 'materials & installation' full-service packages. Material-only sales are only available for the indoor mineral series.",
+                
+                // Footer
+                ".footer-cols div:nth-child(1) h5": "Product Aesthetics",
+                ".footer-cols div:nth-child(2) h5": "Engineering Service",
+                ".footer-cols div:nth-child(3) h5": "Contact Us",
+                ".footer-cols div:nth-child(2) li:nth-child(1) a": "Dosage Calculation",
+                ".footer-cols div:nth-child(2) li:nth-child(2) a": "Project Simulation",
+                ".footer-cols div:nth-child(2) li:nth-child(3) a": "Engineering Inquiry",
+                ".footer-cols p": "© Magic Stone. All Rights Reserved. Made in Taiwan."
+            }
+        };
+
+        function toggleLanguage() {
+            const btn = document.getElementById('lang-btn');
+            if (currentLang === 'zh') {
+                // Switch to English
+                currentLang = 'en';
+                btn.textContent = '中文';
+                
+                // Translate DOM elements
+                for (const [selector, text] of Object.entries(TRANSLATIONS.en)) {
+                    const elements = document.querySelectorAll(selector);
+                    elements.forEach(el => {
+                        if (!el.dataset.zh) {
+                            el.dataset.zh = el.innerHTML;
+                        }
+                        el.innerHTML = text;
+                    });
+                }
+                
+                // Translate dynamically rendered project tags
+                const displayMgs = document.querySelectorAll('.case-card-meta span');
+                displayMgs.forEach(span => {
+                    if (span.textContent.includes('MG崗石塗料')) {
+                        span.textContent = 'MG Granite';
+                    } else if (span.textContent.includes('MGS礦物塗料')) {
+                        span.textContent = 'MGS Mineral';
+                    }
+                });
+            } else {
+                // Switch to Chinese
+                currentLang = 'zh';
+                btn.textContent = 'EN';
+                
+                // Restore Chinese DOM elements
+                for (const selector of Object.keys(TRANSLATIONS.en)) {
+                    const elements = document.querySelectorAll(selector);
+                    elements.forEach(el => {
+                        if (el.dataset.zh) {
+                            el.innerHTML = el.dataset.zh;
+                        }
+                    });
+                }
+                
+                // Restore dynamically rendered project tags
+                const displayMgs = document.querySelectorAll('.case-card-meta span');
+                displayMgs.forEach(span => {
+                    if (span.textContent === 'MG Granite') {
+                        span.textContent = 'MG崗石塗料';
+                    } else if (span.textContent === 'MGS Mineral') {
+                        span.textContent = 'MGS礦物塗料';
+                    }
+                });
+            }
+        }
+
 
 
         function setActiveColor(colorObj) {
