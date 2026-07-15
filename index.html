@@ -464,6 +464,14 @@
             .visualizer-card {
                 padding: 1.5rem;
             }
+            .interactive-stage {
+                height: 320px !important; /* Shorter stage height on mobile so swatches and image fit in 1 viewport */
+            }
+        }
+
+        /* Spinner animation for visualizer loading */
+        @keyframes stage-spin {
+            to { transform: rotate(360deg); }
         }
 
         .interactive-stage {
@@ -1566,6 +1574,10 @@
                     <img src="swatch_scenes/scene_rose.jpg" alt="空間變色示意圖" class="stage-image" id="stage-main-image">
                     <div class="stage-overlay" id="stage-overlay" style="background-color: #d8c3b3;"></div>
                     <div class="stage-light-shadow"></div>
+                    <!-- Spinner loading overlay for slow mobile connections -->
+                    <div class="stage-loader" id="stage-loader" style="display:none; position:absolute; inset:0; background:rgba(0,0,0,0.2); z-index:5; align-items:center; justify-content:center;">
+                        <div style="width:40px; height:40px; border:3px solid rgba(188,160,125,0.3); border-top-color:var(--brand-gold); border-radius:50%; animation:stage-spin 0.8s linear infinite;"></div>
+                    </div>
                 </div>
 
                 <div class="palette-panel">
@@ -2005,11 +2017,26 @@
         function setActiveColor(colorObj) {
             const overlay = document.getElementById('stage-overlay');
             const mainImg = document.getElementById('stage-main-image');
+            const loader = document.getElementById('stage-loader');
             
             if (mgsCustomScenes[colorObj.code]) {
                 // 如果有獨立生成的實景圖，直接載入原圖，完全關閉 CSS 濾鏡以呈現 100% 自然真實的光影與配色
                 if (mainImg) {
-                    mainImg.src = mgsCustomScenes[colorObj.code];
+                    // Show spinner if the image is not cached yet
+                    if (loader) {
+                        loader.style.display = 'flex';
+                    }
+                    
+                    const tempImg = new Image();
+                    tempImg.src = mgsCustomScenes[colorObj.code];
+                    tempImg.onload = () => {
+                        mainImg.src = mgsCustomScenes[colorObj.code];
+                        if (loader) loader.style.display = 'none';
+                    };
+                    tempImg.onerror = () => {
+                        mainImg.src = mgsCustomScenes[colorObj.code];
+                        if (loader) loader.style.display = 'none';
+                    };
                 }
                 if (overlay) {
                     overlay.style.backgroundColor = 'transparent';
