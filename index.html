@@ -2066,6 +2066,10 @@
                 ".hero-actions .btn-primary": "Start Simulator",
                 ".hero-actions .btn-secondary": "Browse Cases",
                 
+                // Hero Subtitle Banner
+                ".hero-logo-sub": "Natural Rocks · Earth Tones",
+                ".hero-logo-desc": "Taiwan local R&D, combining exquisite craftsmanship to build low-carbon green building materials and premium raw stone texture experience.",
+                
                 // About Section
                 ".company-subtitle": "Magic Stone — Premium Taiwan Mineral Coatings",
                 ".company-title": "Nature Stone Textures<br>Empowering Walls with Breathability",
@@ -2086,9 +2090,16 @@
                 "#products .tab-trigger[onclick*='indoor']": "Indoor Mineral",
                 "#products .tab-trigger[onclick*='outdoor']": "Outdoor Mineral",
                 "#products .tab-trigger[onclick*='granite']": "Granite Series",
+                
+                "#prod-indoor .prod-title": "Indoor Wabi-Sabi",
                 "#prod-indoor .product-desc": "Chic Wabi-Sabi interior mineral textures. Zero VOC, zero odor, creating a healthy indoor breeze.",
+                
+                "#prod-outdoor .prod-title": "Outdoor Sealer",
                 "#prod-outdoor .product-desc": "Superior weather protection for building envelopes. Self-cleaning, mildew-proof, breathable shield.",
+                
+                "#prod-granite .prod-title": "Granite Series",
                 "#prod-granite .product-desc": "3D multi-tone textured granite finishes. Lightweight, highly safe stone simulation for skyscrapers.",
+                
                 ".feature-list li:nth-child(1)": "✓ Breathable & water-repellent formula",
                 ".feature-list li:nth-child(2)": "✓ Anti-mildew & anti-algae certificate",
                 ".feature-list li:nth-child(3)": "✓ Flexible shield resists micro-cracks",
@@ -2178,7 +2189,28 @@
             }
         };
 
-        function toggleLanguage() {
+        const CASE_NAME_MAP = {
+            "住宅外牆工程": "Residential Exterior Project",
+            "外牆塗裝工程": "Exterior Painting Project",
+            "商業大樓外牆工程": "Commercial Building Project",
+            "教育機構外牆工程": "Educational Institution Project",
+            "納骨塔外牆工程": "Columbarium Exterior Project",
+            "寺廟外牆工程": "Temple Restoration Project",
+            "南鯤鯓代天府鯤瀛樓": "Nankunshen Temple Kunying Hall",
+            "秀泰影城": "Showtime Cinemas",
+            "港南艾茉爾婚宴會館": "Emerald Wedding Banquet Hall",
+            "兆品酒店": "Maison de Chine Hotel",
+            "關西法雲寺": "Kuanhsi Fayun Temple"
+        };
+        
+        function translateText(text) {
+            if (currentLang === 'en' && CASE_NAME_MAP[text]) {
+                return CASE_NAME_MAP[text];
+            }
+            return text;
+        }
+
+                function toggleLanguage() {
             const btn = document.getElementById('lang-btn');
             if (currentLang === 'zh') {
                 // Switch to English
@@ -2195,16 +2227,6 @@
                         el.innerHTML = text;
                     });
                 }
-                
-                // Translate dynamically rendered project tags
-                const displayMgs = document.querySelectorAll('.case-card-meta span');
-                displayMgs.forEach(span => {
-                    if (span.textContent.includes('MG崗石塗料')) {
-                        span.textContent = 'MG Granite';
-                    } else if (span.textContent.includes('MGS礦物塗料')) {
-                        span.textContent = 'MGS Mineral';
-                    }
-                });
             } else {
                 // Switch to Chinese
                 currentLang = 'zh';
@@ -2219,16 +2241,33 @@
                         }
                     });
                 }
-                
-                // Restore dynamically rendered project tags
-                const displayMgs = document.querySelectorAll('.case-card-meta span');
-                displayMgs.forEach(span => {
-                    if (span.textContent === 'MG Granite') {
-                        span.textContent = 'MG崗石塗料';
-                    } else if (span.textContent === 'MGS Mineral') {
-                        span.textContent = 'MGS礦物塗料';
-                    }
-                });
+            }
+            
+            // Re-render grids immediately to reflect translated project names and metadata
+            const gridMg = document.getElementById('grid-mg');
+            const gridMgs = document.getElementById('grid-mgs');
+            if (gridMg && gridMgs) {
+                gridMg.innerHTML = '';
+                gridMgs.innerHTML = '';
+                // Render already loaded pages
+                const mgPool = allCards.mg;
+                const mgsPool = allCards.mgs;
+                for (let i = 0; i < Math.min(paged.mg * PAGE_SIZE, mgPool.length); i++) {
+                    gridMg.appendChild(makeCard(mgPool[i]));
+                }
+                for (let i = 0; i < Math.min(paged.mgs * PAGE_SIZE, mgsPool.length); i++) {
+                    gridMgs.appendChild(makeCard(mgsPool[i]));
+                }
+            }
+            
+            // Refresh currently selected color label on screen
+            const activeColorDot = document.getElementById('active-color-dot');
+            if (activeColorDot) {
+                const colorCode = document.getElementById('active-meta').textContent.split(' | ')[0];
+                const activeColorObj = [...colorPaletteData.rose, ...colorPaletteData.gray, ...colorPaletteData.field, ...colorPaletteData.lilac].find(c => c.code === colorCode);
+                if (activeColorObj) {
+                    setActiveColor(activeColorObj);
+                }
             }
         }
 
@@ -2273,7 +2312,15 @@
                 }
             }
             
-            document.getElementById('active-title').innerText = colorObj.name;
+            
+            let displayName = colorObj.name;
+            if (currentLang === 'en') {
+                displayName = displayName.replace("沙漠玫瑰", "Desert Rose")
+                                         .replace("晨曦岩灰", "Morning Gray")
+                                         .replace("煙雨曠野", "Misty Field")
+                                         .replace("板岩丁香", "Slate Lilac");
+            }
+            document.getElementById('active-title').innerText = displayName;
             document.getElementById('active-meta').innerText = colorObj.code + " | " + colorObj.color.toUpperCase();
             document.getElementById('active-color-dot').style.backgroundColor = colorObj.color;
         }
@@ -2462,7 +2509,7 @@
                 ${imgsHtml}${dotsHtml}${arrowsHtml}
             </div>
             <div class="case-card-info">
-                <div class="case-card-name">${data.name}</div>
+                <div class="case-card-name">${translateText(data.name)}</div>
                 <div class="case-card-meta">
                     ${data.location} &nbsp;|&nbsp; <span style="color:${accentColor};font-weight:700;">${displaySeries}</span>
                 </div>
@@ -2505,7 +2552,7 @@
         if (!lbCard) return;
         const imgs = lbCard.data.imgs;
         document.getElementById('lb-img').src = imgs[lbImgIdx];
-        document.getElementById('lb-title').textContent = lbCard.data.name;
+        document.getElementById('lb-title').textContent = translateText(lbCard.data.name);
         const displaySeries = lbCard.series === 'mg' ? 'MG崗石塗料' : 'MGS礦物塗料';
         document.getElementById('lb-meta').textContent =
             lbCard.data.location + ' | ' + displaySeries;
