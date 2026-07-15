@@ -1959,6 +1959,48 @@
             "MGS-035": "swatch_scenes/mgs_035.jpg",
             "MGS-036": "swatch_scenes/mgs_036.jpg"
         };
+        // ── Smart Image Preloader ──
+        // Preload custom scene images in the background to ensure instant (0ms) color switching
+        const preloadedImages = {};
+        
+        function preloadCategoryImages(categoryKey) {
+            const colors = colorPaletteData[categoryKey];
+            if (!colors) return;
+            colors.forEach(item => {
+                const url = mgsCustomScenes[item.code];
+                if (url && !preloadedImages[url]) {
+                    const img = new Image();
+                    img.src = url;
+                    preloadedImages[url] = img; // Keep reference to prevent GC and cache it
+                }
+            });
+        }
+
+        function initBackgroundPreloader() {
+            // Wait 1.5 seconds after page load to avoid blocking main content rendering
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    // 1. First preload current active category (rose)
+                    preloadCategoryImages('rose');
+                    
+                    // 2. Then preload all remaining categories sequentially
+                    const remainingCategories = ['gray', 'field', 'lilac'];
+                    let catIdx = 0;
+                    
+                    function preloadNextCategory() {
+                        if (catIdx >= remainingCategories.length) return;
+                        preloadCategoryImages(remainingCategories[catIdx]);
+                        catIdx++;
+                        setTimeout(preloadNextCategory, 600); // Small interval
+                    }
+                    setTimeout(preloadNextCategory, 800);
+                }, 1500);
+            });
+        }
+        
+        // Execute background preloader init
+        initBackgroundPreloader();
+
 
         function setActiveColor(colorObj) {
             const overlay = document.getElementById('stage-overlay');
@@ -2000,6 +2042,9 @@
             currentPalTab = tabKey;
             document.querySelectorAll('.pal-tab').forEach(t => t.classList.remove('active'));
             btnEl.classList.add('active');
+            
+            // Prioritize preloading the newly selected tab
+            preloadCategoryImages(tabKey);
             
             // Dynamically change the background room scene to fit the color group
             const mainImg = document.getElementById('stage-main-image');
