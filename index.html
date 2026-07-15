@@ -2164,6 +2164,7 @@
         const accentColor = series === 'mg' ? 'var(--brand-gold)' : '#4a9a84';
         const seriesLabel = series === 'mg' ? '崗石 MG' : '礦物 MGS';
 
+        const displaySeries = series === 'mg' ? 'MG崗石塗料' : 'MGS礦物塗料';
         card.innerHTML = `
             <div class="case-card-imgs">
                 ${imgsHtml}${dotsHtml}${arrowsHtml}
@@ -2171,9 +2172,7 @@
             <div class="case-card-info">
                 <div class="case-card-name">${data.name}</div>
                 <div class="case-card-meta">
-                    ${data.location}${data.builder ? ' · ' + data.builder : ''}
-                    &nbsp;|&nbsp;
-                    <span style="color:${accentColor};font-weight:700;">${seriesLabel}</span>
+                    ${data.location} &nbsp;|&nbsp; <span style="color:${accentColor};font-weight:700;">${displaySeries}</span>
                 </div>
             </div>`;
 
@@ -2215,10 +2214,9 @@
         const imgs = lbCard.data.imgs;
         document.getElementById('lb-img').src = imgs[lbImgIdx];
         document.getElementById('lb-title').textContent = lbCard.data.name;
+        const displaySeries = lbCard.series === 'mg' ? 'MG崗石塗料' : 'MGS礦物塗料';
         document.getElementById('lb-meta').textContent =
-            lbCard.data.location +
-            (lbCard.data.builder ? ' · ' + lbCard.data.builder : '') +
-            ' | ' + (lbCard.series === 'mg' ? '崗石 MG 系列' : '礦物 MGS 系列');
+            lbCard.data.location + ' | ' + displaySeries;
         const dotsEl = document.getElementById('lb-dots');
         dotsEl.innerHTML = imgs.map((_, ii) =>
             `<div class="lb-dot${ii===lbImgIdx?' active':''}" onclick="lbImgGo(${ii})"></div>`
