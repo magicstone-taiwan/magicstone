@@ -1866,7 +1866,7 @@
                 <h5>聯絡我們</h5>
                 <ul>
                     <li>電話：04-2680-2755</li>
-                    <li>服務區域：台中地區 / 台灣中部</li>
+                    <li>服務區域：全台灣</li>
                     <li>信箱：<a href="mailto:magic862726@gmail.com?subject=%E9%BA%A5%E9%87%91%E5%B4%97%E7%9F%B3%E5%A1%97%E6%96%99%E5%B7%A5%E7%A8%8B%E8%AB%AE%E8%A9%A2" onclick="copyEmailAndNotify(event, 'magic862726@gmail.com')" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--brand-gold)'" onmouseout="this.style.color='inherit'">magic862726@gmail.com</a></li>
                 </ul>
             </div>
@@ -2106,13 +2106,13 @@
                 ".feature-list li:nth-child(4)": "✓ Eco-friendly, green building standard",
                 "#products .btn-primary": "Simulate Colors Now",
                 
-                // Circle Tags
-                ".circle-tag:nth-child(1) span:first-child": "Heat Resist",
-                ".circle-tag:nth-child(2) span:first-child": "Stain Resist",
-                ".circle-tag:nth-child(3) span:first-child": "Easy Clean",
-                ".circle-tag:nth-child(4) span:first-child": "Low VOC",
-                ".circle-tag:nth-child(5) span:first-child": "Elasticity",
-                ".circle-tag:nth-child(6) span:first-child": "Seamless",
+                // Circle Tags (Optimized with centered br tags to prevent 100px overflow)
+                ".circle-tag:nth-child(1)": "<span style='font-size:0.8rem;line-height:1.25;text-align:center;'>Heat<br>Resist</span>",
+                ".circle-tag:nth-child(2)": "<span style='font-size:0.8rem;line-height:1.25;text-align:center;'>Stain<br>Resist</span>",
+                ".circle-tag:nth-child(3)": "<span style='font-size:0.8rem;line-height:1.25;text-align:center;'>Easy<br>Clean</span>",
+                ".circle-tag:nth-child(4)": "<span style='font-size:0.8rem;line-height:1.25;text-align:center;'>Low<br>VOC</span>",
+                ".circle-tag:nth-child(5)": "<span style='font-size:0.8rem;line-height:1.25;text-align:center;'>High<br>Elastic</span>",
+                ".circle-tag:nth-child(6)": "<span style='font-size:0.8rem;line-height:1.25;text-align:center;'>Seamless</span>",
                 
                 // Colors Section
                 "#visualizer .section-tag": "Color Palette",
@@ -2185,6 +2185,7 @@
                 ".footer-cols div:nth-child(2) li:nth-child(1) a": "Dosage Calculation",
                 ".footer-cols div:nth-child(2) li:nth-child(2) a": "Project Simulation",
                 ".footer-cols div:nth-child(2) li:nth-child(3) a": "Engineering Inquiry",
+                ".footer-cols div:nth-child(3) li:nth-child(2)": "Service Area: All Taiwan",
                 ".footer-cols p": "© Magic Stone. All Rights Reserved. Made in Taiwan."
             }
         };
