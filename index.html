@@ -1100,10 +1100,11 @@
 
         /* 麥金崗石品牌介紹（去除了母公司騰煇標記，專注品牌獨立行銷） */
         .company-intro {
-            background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), 
+            background: linear-gradient(rgba(255,255,255,0.94), rgba(255,255,255,0.94)), 
                         url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
+            padding: 8rem 2rem !important; /* Enhanced vertical breathing padding */
         }
 
         .company-container {
@@ -1130,33 +1131,41 @@
         .company-title {
             font-size: 2.4rem;
             font-weight: 900;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
+            margin-bottom: 2.2rem; /* Increased from 1.5rem */
+            line-height: 1.35;
+            letter-spacing: -0.01em;
         }
 
         .company-body {
             color: var(--text-sub);
             font-size: 1.05rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.2rem;
+            line-height: 1.85 !important; /* Increased line-height for a beautiful breathing rhythm */
+            letter-spacing: 0.04em !important; /* Added subtle letter-spacing for premium legibility */
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 2.8rem; /* Increased from 2rem to pull grid boxes apart */
         }
 
         .stat-item {
-            border-left: 3px solid var(--brand-gold);
-            padding-left: 1.2rem;
+            border-left: 2px solid rgba(188, 160, 125, 0.4); /* Thinner and softer line color */
+            padding-left: 1.5rem; /* Increased inner padding */
+            transition: all 0.3s ease;
+        }
+        .stat-item:hover {
+            border-left-color: var(--brand-gold);
         }
 
         .stat-val {
-            font-size: 2.2rem;
+            font-size: 2.1rem;
             font-weight: 900;
             color: var(--text-main);
-            line-height: 1;
-            margin-bottom: 0.4rem;
+            line-height: 1.1;
+            margin-bottom: 0.6rem; /* More space below value */
+            letter-spacing: -0.02em;
         }
 
         .stat-label {
@@ -1459,8 +1468,8 @@
                 </p>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <div style="margin-bottom: 2rem; text-align: center;">
-                    <img src="麥金logo_有字_方-01.png" alt="麥金崗石 Magic Stone" style="width: 140px; height: auto; opacity: 0.95;">
+                <div style="margin-bottom: 3.5rem; text-align: center;">
+                    <img src="麥金logo_有字_方-01.png" alt="麥金崗石 Magic Stone" style="width: 110px; height: auto; opacity: 0.92;">
                 </div>
                 <div class="stats-grid" style="width: 100%;">
                     <div class="stat-item">
