@@ -494,9 +494,18 @@
 
         /* 關於區金色 Logo 懸浮飄逸動態 */
         @keyframes gentle-float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-14px); } /* Increased float amplitude for visible premium motion */
-            100% { transform: translateY(0); }
+            0% {
+                transform: translateY(0);
+                filter: drop-shadow(0 0 6px rgba(188, 160, 125, 0.35)); /* Subtle resting gold glow */
+            }
+            50% {
+                transform: translateY(-14px);
+                filter: drop-shadow(0 0 25px rgba(188, 160, 125, 0.85)); /* Peak breathing gold glow */
+            }
+            100% {
+                transform: translateY(0);
+                filter: drop-shadow(0 0 6px rgba(188, 160, 125, 0.35));
+            }
         }
         .about-logo-hover {
             display: inline-block; /* Crucial block context for transform translateY to work on <img> */
