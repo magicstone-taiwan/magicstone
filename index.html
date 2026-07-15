@@ -499,6 +499,7 @@
             100% { transform: translateY(0); }
         }
         .about-logo-hover {
+            display: inline-block; /* Crucial block context for transform translateY to work on <img> */
             animation: gentle-float 6s ease-in-out infinite;
         }
 
@@ -514,7 +515,7 @@
             }
         }
         .product-content.active {
-            display: block;
+            display: flex; /* Restored to flex layout to prevent layout break */
             animation: tab-slide-in 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
@@ -2105,9 +2106,12 @@
                     const tempImg = new Image();
                     tempImg.src = mgsCustomScenes[colorObj.code];
                     tempImg.onload = () => {
-                        mainImg.src = mgsCustomScenes[colorObj.code];
-                        mainImg.style.opacity = '1'; // Velvet fade-in
-                        if (loader) loader.style.display = 'none';
+                        // Keep faded-out state slightly to let the eye perceive the transition
+                        setTimeout(() => {
+                            mainImg.src = mgsCustomScenes[colorObj.code];
+                            mainImg.style.opacity = '1'; // Velvet fade-in
+                            if (loader) loader.style.display = 'none';
+                        }, 120);
                     };
                     tempImg.onerror = () => {
                         mainImg.src = mgsCustomScenes[colorObj.code];
@@ -2125,8 +2129,10 @@
                     const tempImg = new Image();
                     tempImg.src = tabScenes[currentPalTab];
                     tempImg.onload = () => {
-                        mainImg.src = tabScenes[currentPalTab];
-                        mainImg.style.opacity = '1';
+                        setTimeout(() => {
+                            mainImg.src = tabScenes[currentPalTab];
+                            mainImg.style.opacity = '1';
+                        }, 120);
                     };
                     tempImg.onerror = () => {
                         mainImg.src = tabScenes[currentPalTab];
