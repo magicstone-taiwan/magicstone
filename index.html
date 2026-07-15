@@ -750,6 +750,327 @@
             color: var(--text-sub);
         }
 
+        /* ═══════════════════════════════════════════════
+           工程實績展示 (Cases Gallery)
+        ═══════════════════════════════════════════════ */
+
+        /* ── Hero Carousel (5 landmark projects) ── */
+        .cases-hero {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+        .cases-hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.85s ease;
+        }
+        .cases-hero-slide.active { opacity: 1; }
+        .cases-hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.72);
+            transition: transform 8s ease;
+        }
+        .cases-hero-slide.active img {
+            transform: scale(1.06);
+        }
+        .cases-hero-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 2.5rem 3rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.78));
+            color: #fff;
+            pointer-events: none;
+        }
+        .cases-hero-tag {
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--brand-gold);
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+        .cases-hero-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.9rem;
+            font-weight: 900;
+            line-height: 1.3;
+        }
+        .cases-hero-sub {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.75);
+            margin-top: 0.3rem;
+        }
+        .cases-hero-dots {
+            position: absolute;
+            bottom: 1.4rem;
+            right: 2.5rem;
+            display: flex;
+            gap: 8px;
+        }
+        .cases-hero-dots button {
+            width: 28px; height: 4px;
+            border: none; border-radius: 2px;
+            background: rgba(255,255,255,0.35);
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+        .cases-hero-dots button.active {
+            background: var(--brand-gold);
+            width: 44px;
+        }
+        .cases-hero-nav {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.25s;
+            backdrop-filter: blur(4px);
+        }
+        .cases-hero-nav:hover { background: rgba(188,160,125,0.5); }
+        .cases-hero-nav.prev { left: 1.5rem; }
+        .cases-hero-nav.next { right: 1.5rem; }
+
+        /* ── Tab Filter ── */
+        .cases-tabs {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            margin: 3rem 0 2.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .cases-tab-btn {
+            padding: 0.75rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-sub);
+            position: relative;
+            transition: color 0.25s;
+            letter-spacing: 1px;
+        }
+        .cases-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; right: 0;
+            height: 3px;
+            background: var(--brand-gold);
+            border-radius: 2px 2px 0 0;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .cases-tab-btn.active { color: var(--brand-gold-dark); }
+        .cases-tab-btn.active::after { transform: scaleX(1); }
+        .cases-tab-count {
+            display: inline-block;
+            background: var(--bg-sec);
+            border-radius: 99px;
+            padding: 0.1rem 0.55rem;
+            font-size: 0.75rem;
+            margin-left: 6px;
+            color: var(--text-sub);
+        }
+        .cases-tab-btn.active .cases-tab-count {
+            background: rgba(188,160,125,0.2);
+            color: var(--brand-gold-dark);
+        }
+
+        /* ── Masonry Card Grid ── */
+        .cases-grid {
+            columns: 3;
+            column-gap: 1.25rem;
+            padding: 0 0 2rem;
+        }
+        .case-card {
+            break-inside: avoid;
+            margin-bottom: 1.25rem;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: transform 0.28s, box-shadow 0.28s;
+            display: block;
+        }
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(188,160,125,0.18);
+        }
+        /* Photo carousel inside card */
+        .case-card-imgs {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: #f0ede8;
+        }
+        .case-card-imgs img {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .case-card-imgs img.active { opacity: 1; }
+        /* Dot indicators on card */
+        .card-dots {
+            position: absolute;
+            bottom: 8px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+        }
+        .card-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: background 0.3s, transform 0.3s;
+        }
+        .card-dot.active {
+            background: #fff;
+            transform: scale(1.25);
+        }
+        /* Prev/Next mini arrows on hover */
+        .card-arrow {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            border: none;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .case-card-imgs:hover .card-arrow { opacity: 1; }
+        .card-arrow.prev { left: 8px; }
+        .card-arrow.next { right: 8px; }
+        /* Caption */
+        .case-card-info {
+            padding: 0.85rem 1rem;
+        }
+        .case-card-name {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .case-card-meta {
+            font-size: 0.78rem;
+            color: var(--text-sub);
+        }
+
+        /* ── Lightbox ── */
+        #cases-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #cases-lightbox.open { display: flex; }
+        #cases-lightbox img {
+            max-width: 92vw;
+            max-height: 78vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .lb-info {
+            color: #fff;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .lb-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .lb-meta { font-size: 0.85rem; color: rgba(255,255,255,0.65); margin-top: 0.3rem; }
+        .lb-close {
+            position: fixed;
+            top: 1.5rem; right: 1.8rem;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .lb-close:hover { background: rgba(188,160,125,0.5); }
+        .lb-nav {
+            position: fixed;
+            top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .lb-nav:hover { background: rgba(188,160,125,0.5); }
+        .lb-nav.prev { left: 1.5rem; }
+        .lb-nav.next { right: 1.5rem; }
+        .lb-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+        .lb-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .lb-dot.active { background: var(--brand-gold); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .cases-grid { columns: 2; }
+            .cases-hero { height: 380px; }
+            .cases-hero-title { font-size: 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .cases-grid { columns: 1; }
+            .cases-hero { height: 300px; }
+            .cases-hero-overlay { padding: 1.5rem; }
+            .cases-hero-title { font-size: 1.3rem; }
+            .cases-tabs { gap: 0; }
+            .cases-tab-btn { padding: 0.6rem 1.2rem; font-size: 0.88rem; }
+        }
+
         /* 麥金崗石品牌介紹（去除了母公司騰煇標記，專注品牌獨立行銷） */
         .company-intro {
             background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), 
@@ -1066,6 +1387,7 @@
                 <li><a href="#products">產品系列</a></li>
                 <li><a href="#visualizer">色彩模擬</a></li>
                 <li><a href="#construction">施工作業</a></li>
+                <li><a href="#projects">工程實績</a></li>
                 <li><a href="#inquiry" class="btn-inquiry">需求估算</a></li>
             </ul>
         </div>
@@ -1343,6 +1665,57 @@
             </div>
         </div>
     </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         工程實績展示 (Cases Gallery)
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="projects" style="padding-top:0; background: var(--bg-base);">
+
+        <!-- Hero Carousel -->
+        <div class="cases-hero" id="cases-hero-wrap">
+            <!-- slides injected by JS -->
+            <button class="cases-hero-nav prev" onclick="heroNav(-1)" aria-label="上一張">&#8592;</button>
+            <button class="cases-hero-nav next" onclick="heroNav(1)" aria-label="下一張">&#8594;</button>
+            <div class="cases-hero-dots" id="hero-dots"></div>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-header" style="margin-top:3.5rem;">
+            <span class="section-tag">Projects</span>
+            <h3 class="section-title serif-font">工程實績展示</h3>
+            <p style="color:var(--text-sub);margin-top:0.8rem;max-width:520px;margin-left:auto;margin-right:auto;font-size:0.95rem;">從全台各地的建案、廟宇到星級酒店，麥金崗石漆工法經受嚴苛環境考驗。</p>
+        </div>
+
+        <!-- Tab Filter -->
+        <div class="cases-tabs" role="tablist">
+            <button id="tab-all" class="cases-tab-btn active" onclick="filterCases('all')" role="tab" aria-selected="true">
+                全部 <span class="cases-tab-count" id="cnt-all">0</span>
+            </button>
+            <button id="tab-mg" class="cases-tab-btn" onclick="filterCases('mg')" role="tab" aria-selected="false">
+                崗石 MG <span class="cases-tab-count" id="cnt-mg">0</span>
+            </button>
+            <button id="tab-mgs" class="cases-tab-btn" onclick="filterCases('mgs')" role="tab" aria-selected="false">
+                礦物 MGS <span class="cases-tab-count" id="cnt-mgs">0</span>
+            </button>
+        </div>
+
+        <!-- Masonry Grid (JS-rendered) -->
+        <div class="cases-grid" id="cases-grid"></div>
+
+    </section>
+
+    <!-- Lightbox -->
+    <div id="cases-lightbox" role="dialog" aria-modal="true" aria-label="工程照片放大">
+        <button class="lb-close" onclick="closeLightbox()" aria-label="關閉">&#10005;</button>
+        <button class="lb-nav prev" onclick="lbNav(-1)" aria-label="上一張">&#8592;</button>
+        <img id="lb-img" src="" alt="工程照片">
+        <button class="lb-nav next" onclick="lbNav(1)" aria-label="下一張">&#8594;</button>
+        <div class="lb-info">
+            <div class="lb-title" id="lb-title"></div>
+            <div class="lb-meta" id="lb-meta"></div>
+            <div class="lb-dots" id="lb-dots"></div>
+        </div>
+    </div>
 
     <!-- 需求用量估算器與諮詢 -->
     <section class="section inquiry-section" id="inquiry">
@@ -1693,5 +2066,204 @@
             }, 3500);
         }
     </script>
+
+    <!-- Cases Gallery Data & Logic -->
+    <script src="case_images/case_data.js"></script>
+    <script>
+    // ── Hero Carousel ──────────────────────────────────────────────────────────
+    const HERO_CASES = [
+        { type:'mg',  idx:0,  tag:'崗石 MG · 台中站前',  title:'秀泰影城',         sub:'台中站前商圈指標地標，MG-005 經典灰' },
+        { type:'mg',  idx:23, tag:'崗石 MG · 新竹香山',  title:'港南艾茉爾婚宴會館', sub:'花崗岩紋理 + GRC 工法，典雅奢華外牆' },
+        { type:'mgs', idx:13, tag:'礦物 MGS · 苗栗竹南', title:'兆品酒店',           sub:'GRC 特殊工法，星級酒店外牆質感呈現' },
+        { type:'mg',  idx:22, tag:'崗石 MG · 新竹關西',  title:'關西法雲寺',         sub:'廟宇建築工程，防候耐污高彈性工法' },
+        { type:'mgs', idx:4,  tag:'礦物 MGS · 台南北門', title:'南鯤鯓代天府鯤瀛樓', sub:'台灣知名廟宇地標，礦物塗料抗鹼工程' },
+    ];
+    let heroIdx = 0, heroTimer;
+    function buildHero() {
+        const wrap = document.getElementById('cases-hero-wrap');
+        const dotsEl = document.getElementById('hero-dots');
+        HERO_CASES.forEach((h, i) => {
+            const data = h.type === 'mg' ? CASE_DATA.granite[h.idx] : CASE_DATA.mineral[h.idx];
+            if (!data) return;
+            const slide = document.createElement('div');
+            slide.className = 'cases-hero-slide' + (i === 0 ? ' active' : '');
+            slide.innerHTML = `
+                <img src="${data.imgs[0]}" alt="${data.name}" loading="lazy">
+                <div class="cases-hero-overlay">
+                    <div class="cases-hero-tag">${h.tag}</div>
+                    <div class="cases-hero-title">${h.title}</div>
+                    <div class="cases-hero-sub">${h.sub}</div>
+                </div>`;
+            wrap.insertBefore(slide, wrap.querySelector('.cases-hero-nav'));
+            const dot = document.createElement('button');
+            dot.setAttribute('aria-label', '切換至第' + (i+1) + '張');
+            dot.className = i === 0 ? 'active' : '';
+            dot.onclick = () => goHero(i);
+            dotsEl.appendChild(dot);
+        });
+        startHeroTimer();
+    }
+    function goHero(n) {
+        const slides = document.querySelectorAll('.cases-hero-slide');
+        const dots = document.querySelectorAll('.cases-hero-dots button');
+        slides[heroIdx].classList.remove('active');
+        dots[heroIdx].classList.remove('active');
+        heroIdx = (n + slides.length) % slides.length;
+        slides[heroIdx].classList.add('active');
+        dots[heroIdx].classList.add('active');
+    }
+    function heroNav(dir) { clearInterval(heroTimer); goHero(heroIdx + dir); startHeroTimer(); }
+    function startHeroTimer() {
+        heroTimer = setInterval(() => goHero(heroIdx + 1), 4200);
+    }
+
+    // ── Cases Grid ─────────────────────────────────────────────────────────────
+    let allCards = []; // {data, type, cardEl, imgIdx}
+    let lbCards = [], lbCard = null, lbImgIdx = 0;
+
+    function buildGrid() {
+        const grid = document.getElementById('cases-grid');
+        grid.innerHTML = '';
+        allCards = [];
+        const combined = [
+            ...CASE_DATA.granite.map(d => ({data:d, type:'mg'})),
+            ...CASE_DATA.mineral.map(d => ({data:d, type:'mgs'})),
+        ];
+        document.getElementById('cnt-all').textContent = combined.length;
+        document.getElementById('cnt-mg').textContent = CASE_DATA.granite.length;
+        document.getElementById('cnt-mgs').textContent = CASE_DATA.mineral.length;
+
+        combined.forEach((item, ci) => {
+            const { data, type } = item;
+            const multi = data.imgs.length > 1;
+            const card = document.createElement('div');
+            card.className = 'case-card';
+            card.dataset.type = type;
+
+            // Image carousel inside card
+            let imgsHtml = data.imgs.map((src, ii) =>
+                `<img src="${src}" alt="${data.name}" loading="lazy" class="${ii===0?'active':''}" data-ci="${ci}" data-ii="${ii}">`
+            ).join('');
+            let dotsHtml = multi
+                ? '<div class="card-dots">' + data.imgs.map((_,ii) =>
+                    `<div class="card-dot${ii===0?' active':''}"></div>`).join('') + '</div>'
+                : '';
+            let arrowsHtml = multi
+                ? `<button class="card-arrow prev" onclick="cardNav(event,${ci},-1)" aria-label="上一張">&#8592;</button>
+                   <button class="card-arrow next" onclick="cardNav(event,${ci},1)" aria-label="下一張">&#8594;</button>`
+                : '';
+            const seriesLabel = type === 'mg' ? '崗石 MG' : '礦物 MGS';
+
+            card.innerHTML = `
+                <div class="case-card-imgs">
+                    ${imgsHtml}
+                    ${dotsHtml}
+                    ${arrowsHtml}
+                </div>
+                <div class="case-card-info">
+                    <div class="case-card-name">${data.name}</div>
+                    <div class="case-card-meta">${data.location}${data.builder ? ' · ' + data.builder : ''} &nbsp;|&nbsp; <span style="color:var(--brand-gold);font-weight:700;">${seriesLabel}</span></div>
+                </div>`;
+
+            // Click opens lightbox on the current image
+            card.querySelector('.case-card-imgs').addEventListener('click', (e) => {
+                if (e.target.classList.contains('card-arrow')) return;
+                const obj = allCards.find(c => c.cardEl === card);
+                openLightbox(obj);
+            });
+
+            grid.appendChild(card);
+            allCards.push({ data, type, cardEl: card, imgIdx: 0 });
+        });
+    }
+
+    function cardNav(e, ci, dir) {
+        e.stopPropagation();
+        const obj = allCards[ci];
+        const imgs = obj.cardEl.querySelectorAll('.case-card-imgs img');
+        const dots = obj.cardEl.querySelectorAll('.card-dot');
+        imgs[obj.imgIdx].classList.remove('active');
+        if (dots[obj.imgIdx]) dots[obj.imgIdx].classList.remove('active');
+        obj.imgIdx = (obj.imgIdx + dir + imgs.length) % imgs.length;
+        imgs[obj.imgIdx].classList.add('active');
+        if (dots[obj.imgIdx]) dots[obj.imgIdx].classList.add('active');
+    }
+
+    // ── Tab Filter ─────────────────────────────────────────────────────────────
+    let currentFilter = 'all';
+    function filterCases(type) {
+        currentFilter = type;
+        ['all','mg','mgs'].forEach(t => {
+            document.getElementById('tab-' + t).classList.toggle('active', t === type);
+            document.getElementById('tab-' + t).setAttribute('aria-selected', t === type);
+        });
+        allCards.forEach(({ data: _d, type: t, cardEl }) => {
+            const show = type === 'all' || t === type;
+            cardEl.style.display = show ? '' : 'none';
+        });
+    }
+
+    // ── Lightbox ───────────────────────────────────────────────────────────────
+    function openLightbox(obj) {
+        lbCard = obj;
+        lbImgIdx = obj.imgIdx;
+        lbCards = allCards.filter(c => currentFilter === 'all' || c.type === currentFilter);
+        updateLb();
+        document.getElementById('cases-lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function updateLb() {
+        if (!lbCard) return;
+        const imgs = lbCard.data.imgs;
+        document.getElementById('lb-img').src = imgs[lbImgIdx];
+        document.getElementById('lb-title').textContent = lbCard.data.name;
+        document.getElementById('lb-meta').textContent =
+            lbCard.data.location + (lbCard.data.builder ? ' · ' + lbCard.data.builder : '') +
+            ' | ' + (lbCard.type === 'mg' ? '崗石 MG 系列' : '礦物 MGS 系列');
+        // Dots
+        const dotsEl = document.getElementById('lb-dots');
+        dotsEl.innerHTML = imgs.map((_, ii) =>
+            `<div class="lb-dot${ii===lbImgIdx?' active':''}" onclick="lbImgGo(${ii})"></div>`
+        ).join('');
+    }
+    function lbImgGo(ii) { lbImgIdx = ii; updateLb(); }
+    function lbNav(dir) {
+        // Within same project: cycle images; then move to next project
+        const imgs = lbCard.data.imgs;
+        const newImgIdx = lbImgIdx + dir;
+        if (newImgIdx >= 0 && newImgIdx < imgs.length) {
+            lbImgIdx = newImgIdx;
+            updateLb();
+            return;
+        }
+        // Move to next/prev project
+        const ci = lbCards.findIndex(c => c === lbCard);
+        const nextCi = (ci + dir + lbCards.length) % lbCards.length;
+        lbCard = lbCards[nextCi];
+        lbImgIdx = dir > 0 ? 0 : lbCard.data.imgs.length - 1;
+        updateLb();
+    }
+    function closeLightbox() {
+        document.getElementById('cases-lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => {
+        if (!document.getElementById('cases-lightbox').classList.contains('open')) return;
+        if (e.key === 'ArrowLeft') lbNav(-1);
+        if (e.key === 'ArrowRight') lbNav(1);
+        if (e.key === 'Escape') closeLightbox();
+    });
+    document.getElementById('cases-lightbox').addEventListener('click', function(e) {
+        if (e.target === this) closeLightbox();
+    });
+
+    // ── Init ───────────────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+        buildHero();
+        buildGrid();
+    });
+    </script>
+
 </body>
+
 </html>
