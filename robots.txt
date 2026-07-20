@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://magicstone.com.tw/sitemap.xml
+Sitemap: https://magicstone-taiwan.github.io/magicstone/sitemap.xml
