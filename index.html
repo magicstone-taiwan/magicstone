@@ -647,24 +647,28 @@
             pointer-events: none;
         }
 
-        /* 服務模式標註說明樣式 */
+        /* 服務模式標註說明樣式 (縱向卡片化，提升行距與閱讀舒適度) */
         .service-scope-note {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            max-width: 1000px;
-            margin: -0.5rem auto 2.2rem auto;
-            padding: 1rem 1.5rem;
-            background: rgba(188, 160, 125, 0.05);
-            border: 1px solid rgba(188, 160, 125, 0.2);
-            border-radius: 8px;
-            font-size: 0.9rem;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 800px; /* 黃金閱讀寬度 */
+            margin: 0 auto 2.5rem auto;
+            padding: 1.25rem 2rem;
+            background: rgba(188, 160, 125, 0.04);
+            border-left: 4px solid var(--brand-gold);
+            border-top: 1px solid rgba(188, 160, 125, 0.12);
+            border-right: 1px solid rgba(188, 160, 125, 0.12);
+            border-bottom: 1px solid rgba(188, 160, 125, 0.12);
+            border-radius: 0 12px 12px 0;
+            font-size: 0.95rem;
             color: var(--text-main);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
         }
         .scope-item {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 1rem;
         }
         .scope-badge {
             font-size: 0.75rem;
@@ -1616,6 +1620,26 @@
                 width: 72px !important;
                 height: 72px !important;
                 font-size: 0.85rem !important;
+            }
+            
+            /* 服務模式說明手機版最佳化 */
+            .service-scope-note {
+                padding: 1.25rem 1.5rem !important;
+                margin-left: 1rem !important;
+                margin-right: 1rem !important;
+                border-left-width: 3px !important;
+            }
+            .scope-item {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.4rem !important;
+            }
+            .scope-badge {
+                margin-top: 0 !important;
+            }
+            .scope-text {
+                font-size: 0.88rem !important;
+                line-height: 1.5 !important;
             }
         }
     </style>
