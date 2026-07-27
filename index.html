@@ -688,6 +688,88 @@
             border: 1px solid rgba(188, 160, 125, 0.4);
         }
 
+        /* 專業工程服務流程樣式 */
+        .workflow-container {
+            max-width: 1100px;
+            margin: 0 auto 3.5rem auto;
+            padding: 2.5rem 2rem;
+            background: rgba(251, 251, 249, 0.85);
+            border: 1px solid rgba(188, 160, 125, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(188, 160, 125, 0.04);
+        }
+        .workflow-header {
+            text-align: center;
+            margin-bottom: 2.2rem;
+        }
+        .workflow-section-title {
+            font-size: 1.35rem;
+            color: var(--brand-gold-dark);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .workflow-section-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            font-weight: 300;
+        }
+        .workflow-steps-grid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.4rem;
+        }
+        .workflow-step-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid rgba(188, 160, 125, 0.1);
+            border-radius: 12px;
+            padding: 1.6rem 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            min-height: 180px;
+            box-sizing: border-box;
+        }
+        .workflow-step-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--brand-gold);
+            box-shadow: 0 8px 20px rgba(188, 160, 125, 0.1);
+        }
+        .w-step-badge {
+            width: 28px;
+            height: 28px;
+            background: var(--brand-gold);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.8rem;
+        }
+        .w-step-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+        .w-step-desc {
+            font-size: 0.78rem;
+            color: var(--text-sub);
+            line-height: 1.45;
+        }
+        .workflow-step-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
 
 
         .palette-panel {
@@ -1641,6 +1723,35 @@
                 font-size: 0.88rem !important;
                 line-height: 1.5 !important;
             }
+            
+            /* 手機版工程服務流程最佳化 */
+            .workflow-container {
+                padding: 1.8rem 1.25rem !important;
+                margin-left: 1rem !important;
+                margin-right: 1rem !important;
+            }
+            .workflow-steps-grid {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            .workflow-step-item {
+                flex-direction: row !important;
+                text-align: left !important;
+                align-items: flex-start !important;
+                padding: 1.25rem !important;
+                width: 100% !important;
+                min-height: auto !important;
+                gap: 1rem !important;
+            }
+            .w-step-badge {
+                margin-bottom: 0 !important;
+                flex-shrink: 0 !important;
+                margin-top: 0.1rem !important;
+            }
+            .workflow-step-arrow {
+                transform: rotate(90deg) !important;
+                margin: -0.2rem 0 !important;
+            }
         }
     </style>
     <!-- Browser Favicon -->
@@ -1942,13 +2053,83 @@
         </div>
     </section>
 
-    <!-- 施工標準工法步驟 -->
+    <!-- 施工與工程服務流程 -->
     <section class="section" id="construction">
         <div class="section-header">
-            <span class="section-tag">Application</span>
-            <h3 class="section-title serif-font">標準施作與工法細節</h3>
+            <span class="section-tag">Application & Process</span>
+            <h3 class="section-title serif-font">專業工程服務與施作細節</h3>
         </div>
-        
+
+        <!-- 麥金專業工程五大服務流程 -->
+        <div class="workflow-container">
+            <div class="workflow-header">
+                <h4 class="workflow-section-title serif-font">麥金專業工程服務流程</h4>
+                <p class="workflow-section-desc">從諮詢到售後，每一階段皆由原廠技術團隊把關，確保頂級工程品質與保障。</p>
+            </div>
+            <div class="workflow-steps-grid">
+                <div class="workflow-step-item">
+                    <div class="w-step-badge">1</div>
+                    <div class="w-step-content">
+                        <div class="w-step-title">需求諮詢</div>
+                        <div class="w-step-desc">透過客服或官方管道初步溝通空間風格、施作面積與材料需求。</div>
+                    </div>
+                </div>
+                
+                <div class="workflow-step-arrow">
+                    <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="#BCA07D"/></svg>
+                </div>
+
+                <div class="workflow-step-item">
+                    <div class="w-step-badge">2</div>
+                    <div class="w-step-content">
+                        <div class="w-step-title">基面診斷</div>
+                        <div class="w-step-desc">技術專員現場測量牆體含水率與基面硬度，主動防範底層結構隱患。</div>
+                    </div>
+                </div>
+
+                <div class="workflow-step-arrow">
+                    <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="#BCA07D"/></svg>
+                </div>
+
+                <div class="workflow-step-item">
+                    <div class="w-step-badge">3</div>
+                    <div class="w-step-content">
+                        <div class="w-step-title">客製工法</div>
+                        <div class="w-step-desc">因應場域調配最佳防護系統，並製作實體物理樣板供現場比對。</div>
+                    </div>
+                </div>
+
+                <div class="workflow-step-arrow">
+                    <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="#BCA07D"/></svg>
+                </div>
+
+                <div class="workflow-step-item">
+                    <div class="w-step-badge">4</div>
+                    <div class="w-step-content">
+                        <div class="w-step-title">專業施作</div>
+                        <div class="w-step-desc">派遣原廠認證專業工班進場施工，按標準施作工序與原廠督導。</div>
+                    </div>
+                </div>
+
+                <div class="workflow-step-arrow">
+                    <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="#BCA07D"/></svg>
+                </div>
+
+                <div class="workflow-step-item">
+                    <div class="w-step-badge">5</div>
+                    <div class="w-step-content">
+                        <div class="w-step-title">驗收保固</div>
+                        <div class="w-step-desc">完工後細緻點交驗收，並核發麥金官方工程保固證書與售後服務。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 2rem; margin-top: 1rem;">
+            <h4 class="serif-font" style="font-size: 1.25rem; color: var(--brand-gold-dark); font-weight: 700; margin-bottom: 0.5rem;">標準施工工序工法 (連工帶料)</h4>
+            <p style="font-size: 0.9rem; color: var(--text-sub); font-weight: 300;">每一道施作工藝皆遵循嚴謹標準，確保外牆與空間之極致品質。</p>
+        </div>
+
         <!-- 服務模式與包料範圍說明 -->
         <div class="service-scope-note">
             <div class="scope-item">
